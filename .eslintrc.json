@@ -15,11 +15,11 @@
         ],
         "linebreak-style": [
             "error",
-            "windows"
+            "unix"
         ],
         "quotes": [
             "warn",
-            "single"
+            "double"
         ],
         "semi": [
             "error",
