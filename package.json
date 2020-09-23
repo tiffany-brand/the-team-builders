@@ -22,12 +22,14 @@
     "env": "0.0.2",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",
     "passport-auth0": "^1.3.3",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "eslint": "^7.9.0"
+    "eslint": "^7.9.0",
+    "nodemon": "^2.0.4"
   }
 }
