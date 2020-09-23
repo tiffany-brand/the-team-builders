@@ -1,11 +1,11 @@
 const passport = require("passport");
-// const LocalStrategy = require("passport-local").Strategy;
+const Auth0Strategy = require("passport-auth0").Strategy;
 
 const db = require("../models");
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use(
-  new LocalStrategy(
+  new Auth0Strategy(
     // Our user will sign in using an email, rather than a "username"
     {
       usernameField: "email"

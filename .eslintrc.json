@@ -1,6 +1,7 @@
 {
     "env": {
         "browser": true,
+        "node": true,
         "es2015": true
     },
     "extends": "eslint:recommended",
