@@ -37,6 +37,18 @@ router.get("/api/profile/:id", function (req, res) {
     });
 });
 
+// Update team member profile information
+router.put("/api/profile", function (req, res) {
+  db.TeamMember.update(req.body, {
+    where: {
+      id: req.body.id
+    }
+  })
+    .then(function (dbTeamMember) {
+      res.json(dbTeamMember);
+    });
+});
+
 // Get all members of a given team
 router.get("/api/teamMember/:teamid", function (req, res) {
   db.TeamMember.findAll({
