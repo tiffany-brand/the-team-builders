@@ -7,6 +7,11 @@ const authRouter = require("./routes/auth");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
+const apiTeamMember = require("./routes/api-team_member");
+const apiTeam = require("./routes/api-team_name");
+const apiAnswer = require("./routes/api-answer");
+const apiQuestion = require("./routes/api-question");
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 3000;
@@ -87,6 +92,10 @@ app.use("/", authRouter);
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 
+app.use("/", apiTeamMember);
+app.use("/", apiTeam);
+app.use("/", apiAnswer);
+app.use("/", apiQuestion);
 
 
 
