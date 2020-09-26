@@ -8,5 +8,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  Team.associate = function(models) {
+    Team.hasMany(models.TeamMember, {
+      onDelete: "SET NULL"
+    });
+  };
+
   return Team;
 };

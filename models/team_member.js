@@ -21,10 +21,10 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    team_id: {
-      type: DataTypes.INT,
-      allowNull: false
-    },
+    // team_id: {
+    //   type: DataTypes.INT,
+    //   allowNull: false
+    // },
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -40,5 +40,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+
+  TeamMember.associate = function(models) {
+    TeamMember.belongsTo(models.Team);
+    TeamMember.hasMany(models.Answer);
+  };
+
   return TeamMember;
 };
