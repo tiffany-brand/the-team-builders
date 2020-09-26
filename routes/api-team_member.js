@@ -25,6 +25,7 @@ router.get("/api/teamMember", function (req, res) {
     });
 });
 
+// Get team member profile by id
 router.get("/api/profile/:id", function (req, res) {
   db.TeamMember.findOne({
     where: {
@@ -36,6 +37,7 @@ router.get("/api/profile/:id", function (req, res) {
     });
 });
 
+// Get all members of a given team
 router.get("/api/teamMember/:teamid", function (req, res) {
   db.TeamMember.findAll({
     where: {
