@@ -53,7 +53,17 @@ $(function () {
   // time to wait between flipping cards back
   let wait = 420;
   // to compare matched cards to total card count
-  let totalCard = allArray.length;
+  let totalCard = allArray.length / 2;
+  // to keep track of moves
+  let moves = 0;
+  // start seconds
+  let second = 0;
+
+  // Scoring system from 1 to 3 stars to shorten code
+  // Should be based on how many pairings there are, hence namesArray.length
+  let stars3 = namesArray.length - 2;
+  let stars2 = namesArray.length;
+  let star1 = namesArray.length + 6;
 
   // selectors
   //form
@@ -63,8 +73,20 @@ $(function () {
   // start game button
   const $startGame = $("#start-game");
   // area to attach cards
-  const $cardBoard = $(".card-board");
+  //const $cardBoard = $(".card-board");
   const $deck = $(".deck");
+
+  // score & modal
+  // timer
+  let $timer = $(".timer");
+  let nowTime;
+  // class for star
+  const $rating = $(".fa-star");
+  // moves text
+  let $moves = $(".moves");
+  // winnter text 
+  let $winnerText = $("#winnerText");
+  let $winnerModal = $("#winnerModal");
 
   // Shuffling function: enables that no two games have the same card arrangement 
   // https://github.com/Ul1ra/MemGame/blob/master/js/app.js
@@ -100,6 +122,47 @@ $(function () {
 
     // function to match cards
     addCardListener();
+
+    // Enables the timer to reset to 0 when the game is restarted
+    resetTimer(nowTime);
+    second = 0;
+    $timer.text(`${second}`);
+    initTime();
+  }
+
+  // Adds a score from 1 to 3 stars depending on the amount of moves done
+  function rating(moves) {
+    let rating = 3;
+    if (moves > stars3 && moves < stars2) {
+      $rating.eq(3).removeClass("fa-star").addClass("fa-star-o");
+    } else if (moves > stars2 && moves < star1) {
+      $rating.eq(2).removeClass("fa-star").addClass("fa-star-o");
+    } else if (moves > star1) {
+      $rating.eq(1).removeClass("fa-star").addClass("fa-star-o");
+      rating = 1;
+    }
+    return { score: rating };
+  }
+
+  // Add boostrap modal alert window showing time, moves, score it took to finish the game, toggles when all pairs are matched.
+  function gameOver(moves, score) {
+    $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done!`);
+    $winnerModal.modal("toggle");
+  }
+
+  // Initiates the timer as soon as the game is loaded
+  function initTime() {
+    nowTime = setInterval(function () {
+      $timer.text(`${second}`);
+      second = second + 1;
+    }, 1000);
+  }
+
+  // Resets the timer when the game ends or is restarted
+  function resetTimer(timer) {
+    if (timer) {
+      clearInterval(timer);
+    }
   }
 
   // This function allows each card to be validated that is an equal match to another card that is clicked on to stay open.
@@ -138,26 +201,29 @@ $(function () {
         allOpen = [];
 
         // Increments the number of moves by one only when two cards are matched or not matched
-        //moves++;
+        moves++;
 
         // The number of moves is added to the rating() function that will determine the star score
-        //rating(moves);
+        rating(moves);
 
         // The number of moves are added to the modal HTML alert
-        //$moves.html(moves);
+        $moves.html(moves);
       }
 
-      // The game is finished once all cards have been matched, with a short delay
-      if (totalCard === match) {
-        // append not working - do modal instead??
-        const yayFinalDiv = $("<p>").addClass("font-weight-bolder yay-final").css("display", "block").text("Congrats! You successfully matched all the cards!");
-        $cardBoard.append(yayFinalDiv);
+      console.log(totalCard);
+      console.log(match);
 
-        //rating(moves);
-        //let score = rating(moves).score;
+      // The game is finished once all cards have been matched, with a short delay
+      if (totalCard == match) {
+        // append not working - do modal instead??
+        //const yayFinalDiv = $("<p>").addClass("font-weight-bolder yay-final").css("display", "block").text("Congrats! You successfully matched all the cards!");
+        //$cardBoard.append(yayFinalDiv);
+
+        rating(moves);
+        let score = rating(moves).score;
         setTimeout(function () {
-          //gameOver(moves, score);
-          $cardBoard.append(yayFinalDiv);
+          gameOver(moves, score);
+          //$cardBoard.append(yayFinalDiv);
         }, 500);
       }
     });
