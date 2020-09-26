@@ -35,4 +35,16 @@ router.get("/api/singleQuestion/:questionId", function (req, res) {
     });
 });
 
+// Get answers to all questions by team member id
+router.get("/api/userAnswers/:teamMemberId", function (req, res) {
+  db.Answer.findAll({
+    where: {
+      TeamMemberId: req.params.teamMemberId
+    }
+  })
+    .then(function (dbAnswer) {
+      res.json(dbAnswer);
+    });
+});
+
 module.exports = router;
