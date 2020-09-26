@@ -1,4 +1,7 @@
 const express = require("express");
+
+require("dotenv").config();
+
 const session = require("express-session");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
@@ -12,7 +15,7 @@ const apiTeam = require("./routes/api-team_name");
 const apiAnswer = require("./routes/api-answer");
 const apiQuestion = require("./routes/api-question");
 
-require("dotenv").config();
+
 
 const PORT = process.env.PORT || 3000;
 
