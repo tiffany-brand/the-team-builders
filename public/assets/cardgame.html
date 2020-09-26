@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Team Builders - Memory Card Game</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="css/gamecss.css">
+</head>
+
+<body>
+    <!-- Need navbar -->
+
+    <div class="container">
+
+        <!-- Form to select team and question - hide on submit -->
+        <div class="row" id="game-form">
+            <div class="col-8 text-center mx-auto">
+                <form class="game-form">
+                    <div class="form-group">
+                        <label for="gameTeamSelection">Select a team.</label>
+                        <select class="form-control" id="gameTeamSelection">
+                            <!-- How populate with the options from the DB?? -->
+                            <option>Team Builders</option>
+                            <option>Sales Team</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameQuestionSelection">Select a question.</label>
+                        <select class="form-control" id="gameQuestionSelection">
+                            <!-- How populate with the options from the DB?? -->
+                            <option>What is your favorite color?</option>
+                            <option>What was your favorite vacation?</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Game Instructions row - show/hide -->
+        <div class="row game-instruct">
+            <div class="col-8 mx-auto">
+                <h1 class="text-center">Game Instructions</h1>
+                <p>This game will test not only your memory but also how well you know your teammates!<br>
+                    If it's your answer or name flipped...shhh!<br>
+                    May the best team conquer!<br>
+                </p>
+                <button type="submit" class="btn btn-primary" id="start-game">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Card board row -->
+        <div class="row show-cards">
+            <div class="col-12 card-board">
+                <div class="card-board">
+                    <ul class="deck mx-auto"></ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Javascript -->
+    <!-- jQuery, Popper.js, Bootstrap JS, local JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
