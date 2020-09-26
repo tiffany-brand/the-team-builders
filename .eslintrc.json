@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "node": true,
-        "es2015": true
+        "es2015": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {

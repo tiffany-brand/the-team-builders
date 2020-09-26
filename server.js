@@ -1,4 +1,7 @@
 const express = require("express");
+
+require("dotenv").config();
+
 const session = require("express-session");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
@@ -6,13 +9,14 @@ const userInViews = require("./lib/middleware/userInViews");
 const authRouter = require("./routes/auth");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const cardgameRouter = require("./routes/cardgame-route");
 
 const apiTeamMember = require("./routes/api-team_member");
 const apiTeam = require("./routes/api-team_name");
 const apiAnswer = require("./routes/api-answer");
 const apiQuestion = require("./routes/api-question");
 
-require("dotenv").config();
+
 
 const PORT = process.env.PORT || 3000;
 
@@ -96,6 +100,7 @@ app.use("/", apiTeamMember);
 app.use("/", apiTeam);
 app.use("/", apiAnswer);
 app.use("/", apiQuestion);
+app.use("/cardgame", cardgameRouter);
 
 
 
