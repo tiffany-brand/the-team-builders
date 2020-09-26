@@ -7,7 +7,7 @@ router.post("/api/teamMember", function(req, res) {
     nick_name: req.body.nick_name,
     email: req.body.email,
     auth0_id: req.body.auth0_id,
-    team_id: req.body.team_id,
+    TeamId: req.body.TeamId,
     last_name: req.body.last_name,
     first_name: req.body.first_name
   })

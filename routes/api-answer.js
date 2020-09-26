@@ -4,8 +4,8 @@ const db = require("../models");
 
 router.post("/api/answer", function(req, res) {
   db.Answer.create({
-    member_id: req.body.member_id,
-    question_id: req.body.question_id,
+    TeamMemberId: req.body.TeamMemberId,
+    QuestionId: req.body.QuestionId,
     answer: req.body.answer
   })
     .then(function(dbAnswer) {
