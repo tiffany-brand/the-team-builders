@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const util = require("util");
 const url = require("url");
 const querystring = require("querystring");
+const createUser = require("../lib/createUser");
 
 dotenv.config();
 
@@ -25,6 +26,13 @@ router.get("/callback", function (req, res, next) {
       if (err) { return next(err); }
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
+      console.log(user);
+      const { _raw, _json, ...userProfile } = user;
+      console.log(userProfile);
+      // creates a user in the team_member table if not there
+      const newUser = createUser(userProfile);
+      console.log(newUser);
+      // send user to previous page or user profile
       res.redirect(returnTo || "/user");
     });
   })(req, res, next);
