@@ -64,7 +64,7 @@ router.get("/api/singleQuestion/:questionId/:teamId", function (req, res) {
 });
 
 // Update the answer for one user/one question
-router.put("/api/singleQuestion", function (req, res) {
+router.put("/api/answer", function (req, res) {
   db.Answer.update(req.body, {
     where: {
       id: req.body.id
