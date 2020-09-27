@@ -13,19 +13,36 @@ router.get('/user', secured(), function (req, res, next) {
       auth0_id: userProfile.id
     }
   }).then((teamMember) => {
-    // send user data to user view
-    const hbsObject = {
-      user: {
-        email: teamMember.email,
-        picture: teamMember.picture,
-        displayName: `${teamMember.first_name} ${teamMember.last_name}`,
-        firstName: teamMember.first_name,
-        lastName: teamMember.last_name,
-        nickname: teamMember.nick_name,
-        teamId: teamMember.TeamId
+    // get questions and answers for user
+    db.Question.findAll({
+      include: {
+        model: db.Answer,
+        where: {
+          TeamMemberId: teamMember.id
+        }
       }
-    }
-    res.render('user', hbsObject);
+    })
+      .then(function (dbQuestions) {
+        let userQa = dbQuestions.map((quest) => {
+          return { questionId: quest.id, question: quest.question, answerId: quest.Answers[0].id, answer: quest.Answers[0].answer }
+        })
+        console.log(userQa)
+        // send user data to user view
+        const hbsObject = {
+          user: {
+            email: teamMember.email,
+            picture: teamMember.picture,
+            displayName: `${teamMember.first_name} ${teamMember.last_name}`,
+            firstName: teamMember.first_name,
+            lastName: teamMember.last_name,
+            nickname: teamMember.nick_name,
+            teamId: teamMember.TeamId,
+            userQa: userQa
+          }
+        }
+        console.log(hbsObject);
+        res.render('user', hbsObject);
+      });
   }).catch(err => console.log(err));
 });
 
