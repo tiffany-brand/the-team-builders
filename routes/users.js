@@ -7,19 +7,22 @@ const db = require("../models");
 /* GET user profile. */
 router.get('/user', secured(), function (req, res, next) {
   const { _raw, _json, ...userProfile } = req.user;
-  db.Post.findAll({}).then((result) => {
-    let posts = result.map(row => {
-      return row.dataValues
-    });
-    console.log(posts);
+  // get the currently logged in user and send user data to dashboard view
+  db.TeamMember.findOne({
+    where: {
+      auth0_id: userProfile.id
+    }
+  }).then((teamMember) => {
+    // send user data to user view
     const hbsObject = {
       user: {
-        email: userProfile.emails[0].value,
-        userProfile: JSON.stringify(userProfile, null, 2),
-        picture: userProfile.picture,
-        displayName: userProfile.displayName,
-        nickname: userProfile.nickname,
-        posts: posts
+        email: teamMember.email,
+        picture: teamMember.picture,
+        displayName: `${teamMember.first_name} ${teamMember.last_name}`,
+        firstName: teamMember.first_name,
+        lastName: teamMember.last_name,
+        nickname: teamMember.nick_name,
+        teamId: teamMember.TeamId
       }
     }
     res.render('user', hbsObject);

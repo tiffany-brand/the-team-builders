@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   let TeamMember = sequelize.define("TeamMember", {
     nick_name: {
       type: DataTypes.STRING,
@@ -38,10 +38,17 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1]
       }
+    },
+    picture: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     }
   });
 
-  TeamMember.associate = function(models) {
+  TeamMember.associate = function (models) {
     TeamMember.belongsTo(models.Team);
     TeamMember.hasMany(models.Answer);
   };
