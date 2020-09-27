@@ -14,7 +14,7 @@
     max-height: 100px;
 }
 
-h2,
+h1,
 .nav-link,
 .navbar-brand,
 .btn-text {
@@ -30,7 +30,7 @@ h2,
     color: rgba(50,150,190,1);
 }
 
-.h2style {
+.h1style {
     font-size: 48px;
     letter-spacing: 2px;
 }
@@ -169,4 +169,11 @@ a.nav-link:hover,
     height: 160px;
     letter-spacing: 2px;
     font-size: 40px;
+}
+
+.home-header {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#5b247a, #1bcedf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

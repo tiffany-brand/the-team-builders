@@ -9,10 +9,10 @@
             <ul class="navbar-nav flex-row justify-content-md-end justify-content-center">
                 {{#if user }}
                 <li class="nav-item">
-                    <a class="nav-link px-2 mx-2 current-nav navstyle" href="/dashboard">Home</a>
+                    <a class="nav-link px-2 mx-2 navstyle" href="/dashboard">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/user">Profile<span
+                    <a class="nav-link px-3 py-0 mt-2 border-left current-nav navstyle" href="/user">Profile<span
                             class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -40,8 +40,8 @@
 <section class="container-fluid bg-lt-blue py-5">
     <div class="row py-3 py-md-4">
         <div class="col">
-            <h2 class="text-white text-center h2style">Update your profile, <span
-                    class="text-purple">{{user.displayName}}</span></h2>
+            <h1 class="text-white text-center h1style">Update your profile, <span
+                    class="text-purple">{{user.displayName}}</span></h1>
         </div>
     </div>
 </section>
@@ -55,14 +55,13 @@
                 <img src={{user.picture}} class="card-img-top" alt="Profile Picture">
                 <div class="card-body">
                     <h5 class="card-title">{{user.displayName}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Nickname: {{user.nickname}}</h6>
-                    <p class="card-text">{{user.email}}</p>
+                    <h6 class="card-subtitle mb-1 text-muted">Nickname: {{user.nickname}}</h6>
+                    <p class="card-text">Email: {{user.email}}</p>
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
-            <div class="container bg-white mt-lg-n5 mt-4 mt-lg-0 pt-3 border border-purple">
-                <h3 class="text-center mb-4">Please update your information here!</h3>
+            <div class="container bg-white mt-lg-n5 mt-4 mt-lg-0 pt-2 border border-purple">
                 <form>
                     <div class="form-row">
                         <div class="form-group col-4">
@@ -126,14 +125,13 @@
                             <input type="file" class="form-control-file" id="pictureUpload">
                         </div>
                     </div>
-            </div>
-            </form>
-            <div class="row justify-content-center pb-3 mt-4">
-                <a href="/user" class="btn bg-lt-blue text-white btn-text px-4">Update Profile</a>
+                </form>
+                <div class="row justify-content-center pb-3">
+                    <a href="/user" class="btn bg-lt-blue text-white btn-text px-4">Update Profile</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col"></div>
+        <div class="col"></div>
     </div>
 </section>
 
