@@ -1,4 +1,4 @@
--- Drops the blogger if it exists currently --
+-- Drops the Team Builder DB if it exists currently --
 DROP DATABASE IF EXISTS teambuilder_db;
--- Creates the "blogger" database --
+-- Creates the Team Builder database --
 CREATE DATABASE teambuilder_db;
