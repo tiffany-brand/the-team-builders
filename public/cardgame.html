@@ -17,7 +17,7 @@
 <body>
     <!-- Need navbar -->
 
-    <!-- Winner Modal -->
+    <!-- Winner Modal - Appears when all cards have been matched -->
     <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="winnerModal-label">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -28,7 +28,7 @@
                     <p id="winnerText"></p>
                 </div>
                 <div class="modal-footer">
-                    <!-- reload the page when go again is clicked -->
+                    <!-- Reload the page when go again is clicked -->
                     <button type="button" onclick="window.location.reload();" class="btn btn-default" data-dismiss="modal">Go Again!</button>
                 </div>
             </div>
@@ -37,7 +37,7 @@
 
     <div class="container">
 
-        <!-- Form to select team and question - hide on submit -->
+        <!-- Form to select team and question - will stay visible -->
         <div class="row" id="game-form">
             <div class="col-8 text-center mx-auto">
                 <form class="game-form">
@@ -58,13 +58,14 @@
             </div>
         </div>
 
-        <!-- Game Instructions row - show/hide -->
+        <!-- Game Instructions Row - Show on Form submit / Hide on Start Game -->
         <div class="row game-instruct">
             <div class="col-8 mx-auto">
                 <h1 class="text-center">Game Instructions</h1>
                 <p>This game will test not only your memory but also how well you know your teammates!<br>
-                    If it's your answer or name flipped...shhh!<br>
-                    May the best team conquer!<br>
+                    If you don't know them at all, not to worry. You will know them after the game.<br>
+                    If it's your answer flipped...shhh!<br>
+                    May the best team conquer the clock!<br>
                 </p>
                 <button type="submit" class="btn btn-primary" id="start-game">Start Game</button>
             </div>
@@ -95,7 +96,7 @@
 <!-- Need footer? -->
 
     <!-- Javascript -->
-    <!-- jQuery, Popper.js, Bootstrap JS, Axios, local JS -->
+    <!-- MUST BE IN THIS ORDER: jQuery, Popper.js, Bootstrap JS, Axios, local JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -105,7 +106,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/assets/js/game.js"></script>
 </body>
 
