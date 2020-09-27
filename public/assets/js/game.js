@@ -25,19 +25,16 @@ $(function () {
   let $winnerModal = $("#winnerModal");
 
   // VARIABLES FOR GAME //
+  // Axios getCards() variables
   // Array to push axios results upon form submit
   let users = [];
   // Create two different arrays and then combine so they can all be shuffled
   // Names
-  let namesArray = users.map((user) => {
-    return { cardvalue: user.name, id: user.auth0 };
-  });
+  let namesArray = [];
   // Answers
-  let answersArray = users.map((user) => {
-    return { cardvalue: user.answer, id: user.auth0 };
-  });
-  // Combined
-  let allArray = namesArray.concat(answersArray);
+  let answersArray = [];
+  // Combined Game Array
+  let allArray = [];
 
   // The allOpen array specifies all added cards facing up
   let allOpen = [];
@@ -46,7 +43,7 @@ $(function () {
   // Time to wait between flipping cards back
   let wait = 420;
   // Compare matched cards to total card count
-  let totalCard = allArray.length / 2;
+  let totalCard;
   // Keep track of moves
   let moves = 0;
   // Start game seconds
@@ -93,19 +90,37 @@ $(function () {
       });
   };
 
-  // do we need teamid as a param?
-  const getCards = (questionid) => {
-    axios.get(`/api/singleQuestion/${questionid}`)
+  // Get answers for the team and question selections
+  const getCards = (teamid, questionid) => {
+    axios.get(`/api/singleQuestion/${questionid}/${teamid}`)
       .then((response) => {
-        console.log(response);
+        // Since pushing response.data would push everything into an array with length 1
+        // setting the array and then pushing each returned object into the users array
+        // maps the map functions work later on in the function
+        let array = response.data;
+        array.forEach((element) => users.push(element));
+        
+        // Set the name and answer arrays that we will need for creating the cards later
+        namesArray = users.map((user) => {
+          return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
+        });
+
+        answersArray = users.map((user) => {
+          return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
+        });
+
+        // Combine the arrays together and get the totalCard to use in matching logic
+        allArray = namesArray.concat(answersArray);
+        totalCard = allArray.length / 2;
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
+  // GAME FUNCTIONS //
   // Shuffling function: enables that no two games have the same card arrangement 
-  function shuffle(array) {
+  const shuffle = (array) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -116,10 +131,10 @@ $(function () {
       array[randomIndex] = temporaryValue;
     }
     return array;
-  }
+  };
 
   // Function to start game, show cards
-  function init() {
+  const init = () => {
     // Show card board
     $(".show-cards").css("display", "block");
 
@@ -127,8 +142,6 @@ $(function () {
     let allCards = shuffle(allArray);
     // Empty div
     $deck.empty();
-
-    console.log(allCards);
 
     // Append cards to deck
     for (let i = 0; i < allCards.length; i++) {
@@ -143,10 +156,10 @@ $(function () {
     second = 0;
     $timer.text(`${second}`);
     initTime();
-  }
+  };
 
   // Adds a score from 1 to 3 stars depending on the amount of moves done
-  function rating(moves) {
+  const rating = (moves) => {
     let rating = 3;
     if (moves > stars3 && moves < stars2) {
       $rating.eq(3).removeClass("fa-star").addClass("fa-star-o");
@@ -157,28 +170,28 @@ $(function () {
       rating = 1;
     }
     return { score: rating };
-  }
+  };
 
   // Add boostrap modal alert window showing time, moves, score it took to finish the game, toggles when all pairs are matched.
-  function gameOver(moves, score) {
+  const gameOver = (moves, score) => {
     $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done team!`);
     $winnerModal.modal("toggle");
-  }
+  };
 
   // Initiates the timer as soon as the game is loaded
-  function initTime() {
+  const initTime = () => {
     nowTime = setInterval(function () {
       $timer.text(`${second}`);
       second = second + 1;
     }, 1000);
-  }
+  };
 
   // Resets the timer when the game ends or is restarted
-  function resetTimer(timer) {
+  const resetTimer = (timer) => {
     if (timer) {
       clearInterval(timer);
     }
-  }
+  };
 
   // This function allows each card to be validated that is an equal match to another card that is clicked on to stay open.
   // If cards do not match, both cards are flipped back over.
@@ -224,9 +237,6 @@ $(function () {
         $moves.html(moves);
       }
 
-      console.log(totalCard);
-      console.log(match);
-
       // The game is finished once all cards have been matched, with a short delay
       if (totalCard == match) {
         rating(moves);
@@ -238,19 +248,19 @@ $(function () {
     });
   };
 
-  // FUNCTION CALLS
+  // FUNCTION CALLS //
   // Populate drop-downs
   getTeams();
   getQuestions();
 
-  // LISTEN events
+  // LISTEN EVENTS //
   // On form submission, show game instructions
   $gameForm.on("submit", function (event) {
     event.preventDefault();
+    // Axios to get the game data
+    getCards($gameTeamSelection.val(), $gameQuestionSelection.val());
     // Show game instructions
     $gameInstruct.css("display", "block");
-    // Axios to get the game data
-    getCards($gameQuestionSelection.val());
   });
 
   // On start game click, show memory board
