@@ -18,6 +18,7 @@ router.get('/user', secured(), function (req, res, next) {
         userProfile: JSON.stringify(userProfile, null, 2),
         picture: userProfile.picture,
         displayName: userProfile.displayName,
+        nickname: userProfile.nickname,
         posts: posts
       }
     }
