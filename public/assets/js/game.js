@@ -1,5 +1,43 @@
 $(function () {
 
+  // Get Team Names for the drop-down
+  const getTeams = () => {
+    axios.get("/api/team")
+      .then((response) => {
+        console.log(response);
+
+        let s = "<option value=\"-1\">Team Selections</option>";
+        for (let i = 0; i < response.data.length; i++) {
+          s += `<option value=${response.data[i].id}>${response.data[i].name}</option>`;
+        }
+
+        $gameTeamSelection.html(s);
+        console.log(s);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  // Get Questions for the drop-down
+  const getQuestions = () => {
+    axios.get("/api/question")
+      .then((response) => {
+        console.log(response);
+
+        let s = "<option value=\"-1\">Question Selections</option>";
+        for (let i = 0; i < response.data.length; i++) {
+          s += `<option value=${response.data[i].id}>${response.data[i].question}</option>`;
+        }
+
+        $gameQuestionSelection.html(s);
+        console.log(s);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   // Need axios call to DB data
   let users = [
     {
@@ -45,7 +83,7 @@ $(function () {
 
   let allArray = namesArray.concat(answersArray);
 
-  // other useful variables
+  // Other useful variables
   // The allOpen array specifies all added cards facing up
   let allOpen = [];
   // keep track of matches
@@ -65,31 +103,31 @@ $(function () {
   let stars2 = namesArray.length;
   let star1 = namesArray.length + 6;
 
-  // selectors
-  //form
+  // jQuery Selectors
+  // Form
+  const $gameTeamSelection = $("#gameTeamSelection");
+  const $gameQuestionSelection = $("#gameQuestionSelection");
   const $gameForm = $(".game-form");
-  // game instructions row
+  // Game instructions row
   const $gameInstruct = $(".game-instruct");
-  // start game button
+  // Start game button
   const $startGame = $("#start-game");
-  // area to attach cards
-  //const $cardBoard = $(".card-board");
+  // Area to attach cards
   const $deck = $(".deck");
 
-  // score & modal
-  // timer
+  // Score & Modal
+  // Timer
   let $timer = $(".timer");
   let nowTime;
-  // class for star
+  // Class for star
   const $rating = $(".fa-star");
-  // moves text
+  // Moves text
   let $moves = $(".moves");
-  // winnter text 
+  // Winner text 
   let $winnerText = $("#winnerText");
   let $winnerModal = $("#winnerModal");
 
   // Shuffling function: enables that no two games have the same card arrangement 
-  // https://github.com/Ul1ra/MemGame/blob/master/js/app.js
   function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -103,24 +141,24 @@ $(function () {
     return array;
   }
 
-  // function to start game, show cards
+  // Function to start game, show cards
   function init() {
-    // show card board
+    // Show card board
     $(".show-cards").css("display", "block");
 
-    // shuffle array
+    // Shuffle array
     let allCards = shuffle(allArray);
-    // empty div
+    // Empty div
     $deck.empty();
 
     console.log(allCards);
 
-    // append cards to deck
+    // Append cards to deck
     for (let i = 0; i < allCards.length; i++) {
-      $deck.append($(`<li class="card" data-id=${allCards[i].id}">${allCards[i].cardvalue}</li>`));
+      $deck.append($(`<li class="card gamecard text-wrap" data-id=${allCards[i].id}">${allCards[i].cardvalue}</li>`));
     }
 
-    // function to match cards
+    // Function to match cards
     addCardListener();
 
     // Enables the timer to reset to 0 when the game is restarted
@@ -175,7 +213,6 @@ $(function () {
 
       if ($this.hasClass("show") || $this.hasClass("match")) { return true; }
 
-      //let card = $this.context.innerHTML;
       let cardId = $this.data("id");
       $this.addClass("open show");
       allOpen.push(cardId);
@@ -215,19 +252,19 @@ $(function () {
 
       // The game is finished once all cards have been matched, with a short delay
       if (totalCard == match) {
-        // append not working - do modal instead??
-        //const yayFinalDiv = $("<p>").addClass("font-weight-bolder yay-final").css("display", "block").text("Congrats! You successfully matched all the cards!");
-        //$cardBoard.append(yayFinalDiv);
-
         rating(moves);
         let score = rating(moves).score;
         setTimeout(function () {
           gameOver(moves, score);
-          //$cardBoard.append(yayFinalDiv);
         }, 500);
       }
     });
   };
+
+  // FUNCTION CALLS
+  // Populate drop-downs
+  getTeams();
+  getQuestions();
 
   // LISTEN events
   // On form submission, show game instructions
@@ -245,5 +282,13 @@ $(function () {
     // start game - create cards
     init();
   });
-
 });
+
+/*
+Credits
+Memory Game Starter Code
+https://github.com/Ul1ra/MemGame/blob/master/js/app.js
+
+Populate Drop-Downs
+//https://www.c-sharpcorner.com/article/populating-dropown-with-ajax-call/
+*/
