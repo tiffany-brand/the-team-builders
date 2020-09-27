@@ -44,17 +44,13 @@
                     <div class="form-group">
                         <label for="gameTeamSelection">Select a team.</label>
                         <select class="form-control" id="gameTeamSelection">
-                            <!-- How populate with the options from the DB?? -->
-                            <option>Team Builders</option>
-                            <option>Sales Team</option>
+                            <!-- Drop-down populated via JS file -->
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="gameQuestionSelection">Select a question.</label>
                         <select class="form-control" id="gameQuestionSelection">
-                            <!-- How populate with the options from the DB?? -->
-                            <option>What is your favorite color?</option>
-                            <option>What was your favorite vacation?</option>
+                            <!-- Drop-down populated via JS file -->
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -78,7 +74,6 @@
         <div class="row show-cards">
             <div class="col-12 card-board">
                 <div class="card-board">
-                    <ul class="deck mx-auto"></ul>
                     <section class="score-panel mx-auto text-center">
                         <ul class="stars">
                             <li><i class="fas fa-star"></i></li>
@@ -91,6 +86,7 @@
                             <i class="fa fa-repeat"></i>
                         </div>
                     </section>
+                    <ul class="deck mx-auto"></ul>
                 </div>
             </div>
         </div>
@@ -99,7 +95,7 @@
 <!-- Need footer? -->
 
     <!-- Javascript -->
-    <!-- jQuery, Popper.js, Bootstrap JS, local JS -->
+    <!-- jQuery, Popper.js, Bootstrap JS, Axios, local JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -109,6 +105,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/assets/js/game.js"></script>
 </body>
 
