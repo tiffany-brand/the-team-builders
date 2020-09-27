@@ -47,4 +47,20 @@ router.get("/api/userAnswers/:teamMemberId", function (req, res) {
     });
 });
 
+// Gets all answers for a single question by the question id for a team
+router.get("/api/singleQuestion/:questionId/:teamId", function (req, res) {
+  db.Answer.findAll({
+    where: {
+      QuestionId: req.params.questionId
+    },
+    include: [{
+      model: db.TeamMember,
+      where: { teamId: req.params.teamId }
+    }]
+  })
+    .then(function (dbAnswer) {
+      res.json(dbAnswer);
+    });
+});
+
 module.exports = router;

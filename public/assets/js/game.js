@@ -117,7 +117,7 @@ $(function () {
 
     // append cards to deck
     for (let i = 0; i < allCards.length; i++) {
-      $deck.append($(`<li class="card" data-id=${allCards[i].id}">${allCards[i].cardvalue}</li>`));
+      $deck.append($(`<li class="card gamecard" data-id=${allCards[i].id}">${allCards[i].cardvalue}</li>`));
     }
 
     // function to match cards
