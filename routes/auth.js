@@ -44,7 +44,9 @@ router.get("/logout", (req, res) => {
 
   let returnTo = req.protocol + "://" + req.hostname;
   let port = req.connection.localPort;
-  if (port !== undefined && port !== 80 && port !== 443) {
+  // port !== undefined && port !== 80 && port !== 443 - trouble with heroku random ports
+  // if running locally, add the port to the logout url
+  if (port === 3000) {
     returnTo += ":" + port;
   }
   let logoutURL = new url.URL(
