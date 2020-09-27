@@ -1,0 +1,127 @@
+{{!-- OLD NAVBAR --}}
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Team Builder</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {{#if user }}
+            <li class="nav-item">
+                <a class="nav-link" href="/user">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Log Out</a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+                <a class="nav-link" href="/login" tabindex="-1" aria-disabled="true">Log In</a>
+            </li>
+            {{/if}}
+        </ul>
+    </div>
+</nav> --}}
+
+<!-- Navbar -->
+<nav class="container-fluid bg-white border-bottom border-dark">
+    <div class="row align-items-center">
+        <div class="col"></div>
+        <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+            <img src="/assets/img/mainlogo.png" alt="Team Builders" class="logoimg" />
+        </div>
+        <div class="col-md-6 mb-2 mb-md-0 mr-md-2">
+            <ul class="navbar-nav flex-row justify-content-md-end justify-content-center">
+                {{#if user }}
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 current-nav navstyle" href="/dashboard">Home<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/user">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left border-right navstyle" href="/cardgame">Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 navstyle" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 current-nav navstyle" href="/">Home <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/login" tabindex="-1"
+                        aria-disabled="true">Log In</a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Welcome Message -->
+<section class="container-fluid bg-new py-5">
+    <div class="row py-3 py-md-4">
+        <div class="col">
+            <h2 class="text-white text-center h2style">Welcome to Team Builders, <span
+                    class="text-purple">{{user.displayName}}</span></h2>
+        </div>
+    </div>
+</section>
+
+<!-- Profile Content -->
+<section class="container-fluid bg-light">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-12 col-xl-3 mt-3 d-flex flex-column justify-content-center text-center">
+            <div class="card border border-purple mx-auto">
+                <img src={{user.picture}} class="card-img-top" alt="Profile Picture">
+                <div class="card-body">
+                    <h4 class="card-title">{{user.displayName}}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">NICKNAME HERE</h6>
+                    <p class="card-text">{{user.email}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-8">
+            <div class="container bg-white border border-purple mt-xl-n5 mt-4">
+                <div class="row my-4 d-flex justify-content-around">
+                    <a href="/user"
+                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Update Profile</a>
+                    <a href="#" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">View Teams</a>
+                </div>
+                <div class="row mb-4 d-flex justify-content-around">
+                    <a href="#" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Create A
+                        Team</a>
+                    <a href="/cardgame" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">Start A
+                        Game</a>
+                </div>
+            </div>
+            <div class="container d-flex justify-content-around bg-new py-3 mt-4 text-white w-50 float-left">
+                <div class="h3">YOUR TEAM: </div>
+                <div class="h3">Team Builders</div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-margin bg-light">
+    <div class="navbar fixed-bottom navbar-dark bg-purple justify-content-center">
+        <span class="navbar-brand footer-font blue align-middle">Copyright &copy;2020
+            &ThickSpace;|&ThickSpace;
+            Team Builders</span>
+        <span>
+            <a class="fab fa-github fa-2x lt-blue" href="https://github.com/hilbug/the-team-builders"
+                target="_blank"></a>
+            &ThickSpace;
+        </span>
+    </div>
+</footer>

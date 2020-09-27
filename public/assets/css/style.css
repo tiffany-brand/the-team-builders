@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'FVAlmeloRegular';
+    src: url('./fonts/fv_almelo-webfont.eot');
+    src: url('./fonts/fv_almelo-webfont.eot') format('embedded-opentype'),
+         url('./fonts/fv_almelo-webfont.woff') format('woff'),
+         url('./fonts/fv_almelo-webfont.ttf') format('truetype'),
+         url('./fonts/fv_almelo-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.logoimg {
+    max-height: 100px;
+}
+
+h2,
+.nav-link,
+.navbar-brand,
+.btn-text {
+    font-family: 'FVAlmeloRegular'!important;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+.navstyle {
+    letter-spacing: 1px;
+    font-size: large;
+    color: rgba(50,150,190,1);
+}
+
+.h2style {
+    font-size: 48px;
+    letter-spacing: 2px;
+}
+
+.h3style {
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.current-nav {
+    color: #5b247a!important;
+}
+
+a.nav-link:hover,
+.text-purple {
+    color: #5b247a;
+}
+
+.lt-blue {
+    color: rgba(50,150,190,1);
+}
+
+.border-purple {
+    border-color: #5b247a!important;
+}
+
+.border-left,
+.border-right {
+    border-color: rgba(50,150,190,1)!important;
+}
+
+.bg-lt-blue {
+    background-color: rgba(50,150,190,1);
+}
+
+.bg-purple {
+    background-color: #5b247a;
+}
+
+.game-board-back {
+    display: flex;
+    max-width: 960px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.game-card-back {
+    display: flex;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: .2em;
+    border-color: #5b247a;
+    margin: 10px;
+    background-color: #1bcedf;
+    /* background: repeating-linear-gradient(
+    45deg,
+     #1bcedf,
+     #5b247a 5px,
+     #1bcedf 5px,
+     #5b247a 10px
+    ); */
+    opacity: 40%;
+    /* background-color: #5b247a; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 150px;
+    width: 150px;
+}
+
+.game-board-front {
+    display: none;
+    max-width: 960px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.game-card-front {
+    display: none;
+    border-radius: 10px;
+    border-style: double;
+    border-width: .3em;
+    border-color: #5b247a;
+    margin:10px;
+    background-color: rgba(27,206,223,0.1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+}
+
+.footer-font {
+    font-size: 15px;
+}
+
+.footer-margin {
+    height: 75px;
+}
+
+.fas:hover,
+.fab:hover {
+    color: #ffffff;
+}
+
+.card {
+    max-width: 400px;
+}
+
+.btn-size {
+    max-height: 50px;
+}
+
+.btn-width {
+   width: 250px;
+   letter-spacing: 2px;
+   font-size: 20px;
+}
+
+.bg-new {
+    background-color: rgba(50,150,190,1)
+}
+
+.btn-width2 {
+    width: 350px;
+    height: 160px;
+    letter-spacing: 2px;
+    font-size: 40px;
+}

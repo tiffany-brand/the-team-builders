@@ -9,6 +9,7 @@ const userInViews = require("./lib/middleware/userInViews");
 const authRouter = require("./routes/auth");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const dashboardRouter = require("./routes/dashboard");
 const cardgameRouter = require("./routes/cardgame-route");
 
 const apiTeamMember = require("./routes/api-team_member");
@@ -95,12 +96,14 @@ app.use(userInViews());
 app.use("/", authRouter);
 app.use("/", indexRouter);
 app.use("/", usersRouter);
+app.use("/", dashboardRouter);
+app.use("/", cardgameRouter);
 
 app.use("/", apiTeamMember);
 app.use("/", apiTeam);
 app.use("/", apiAnswer);
 app.use("/", apiQuestion);
-app.use("/cardgame", cardgameRouter);
+// app.use("/cardgame", cardgameRouter);
 
 
 
