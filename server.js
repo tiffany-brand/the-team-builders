@@ -97,12 +97,13 @@ app.use("/", authRouter);
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/", dashboardRouter);
+app.use("/", cardgameRouter);
 
 app.use("/", apiTeamMember);
 app.use("/", apiTeam);
 app.use("/", apiAnswer);
 app.use("/", apiQuestion);
-app.use("/cardgame", cardgameRouter);
+// app.use("/cardgame", cardgameRouter);
 
 
 
