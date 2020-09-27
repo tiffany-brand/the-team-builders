@@ -1,109 +1,6 @@
 $(function () {
 
-  // Get Team Names for the drop-down
-  const getTeams = () => {
-    axios.get("/api/team")
-      .then((response) => {
-        console.log(response);
-
-        let s = "<option value=\"-1\">Team Selections</option>";
-        for (let i = 0; i < response.data.length; i++) {
-          s += `<option value=${response.data[i].id}>${response.data[i].name}</option>`;
-        }
-
-        $gameTeamSelection.html(s);
-        console.log(s);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  // Get Questions for the drop-down
-  const getQuestions = () => {
-    axios.get("/api/question")
-      .then((response) => {
-        console.log(response);
-
-        let s = "<option value=\"-1\">Question Selections</option>";
-        for (let i = 0; i < response.data.length; i++) {
-          s += `<option value=${response.data[i].id}>${response.data[i].question}</option>`;
-        }
-
-        $gameQuestionSelection.html(s);
-        console.log(s);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  // Need axios call to DB data
-  let users = [
-    {
-      name: "Hilary",
-      answer: "blue",
-      auth0: "1a"
-    },
-    {
-      name: "Mary",
-      answer: "pink",
-      auth0: "2a"
-    },
-    {
-      name: "Macks",
-      answer: "orange",
-      auth0: "3a"
-    },
-    {
-      name: "Tiffany",
-      answer: "magenta",
-      auth0: "4a"
-    },
-    {
-      name: "Chase",
-      answer: "red",
-      auth0: "5a"
-    },
-    {
-      name: "Nicole",
-      answer: "navy",
-      auth0: "6a"
-    }
-  ];
-
-  // create two different arrays and then combine so they can all be shuffled
-  let namesArray = users.map((user) => {
-    return { cardvalue: user.name, id: user.auth0 };
-  });
-
-  let answersArray = users.map((user) => {
-    return { cardvalue: user.answer, id: user.auth0 };
-  });
-
-  let allArray = namesArray.concat(answersArray);
-
-  // Other useful variables
-  // The allOpen array specifies all added cards facing up
-  let allOpen = [];
-  // keep track of matches
-  let match = 0;
-  // time to wait between flipping cards back
-  let wait = 420;
-  // to compare matched cards to total card count
-  let totalCard = allArray.length / 2;
-  // to keep track of moves
-  let moves = 0;
-  // start seconds
-  let second = 0;
-
-  // Scoring system from 1 to 3 stars to shorten code
-  // Should be based on how many pairings there are, hence namesArray.length
-  let stars3 = namesArray.length - 2;
-  let stars2 = namesArray.length;
-  let star1 = namesArray.length + 6;
-
-  // jQuery Selectors
+  // JQUERY SELECTORS //
   // Form
   const $gameTeamSelection = $("#gameTeamSelection");
   const $gameQuestionSelection = $("#gameQuestionSelection");
@@ -114,7 +11,7 @@ $(function () {
   const $startGame = $("#start-game");
   // Area to attach cards
   const $deck = $(".deck");
-
+  
   // Score & Modal
   // Timer
   let $timer = $(".timer");
@@ -126,6 +23,86 @@ $(function () {
   // Winner text 
   let $winnerText = $("#winnerText");
   let $winnerModal = $("#winnerModal");
+
+  // VARIABLES FOR GAME //
+  // Array to push axios results upon form submit
+  let users = [];
+  // Create two different arrays and then combine so they can all be shuffled
+  // Names
+  let namesArray = users.map((user) => {
+    return { cardvalue: user.name, id: user.auth0 };
+  });
+  // Answers
+  let answersArray = users.map((user) => {
+    return { cardvalue: user.answer, id: user.auth0 };
+  });
+  // Combined
+  let allArray = namesArray.concat(answersArray);
+
+  // The allOpen array specifies all added cards facing up
+  let allOpen = [];
+  // Keep track of matches
+  let match = 0;
+  // Time to wait between flipping cards back
+  let wait = 420;
+  // Compare matched cards to total card count
+  let totalCard = allArray.length / 2;
+  // Keep track of moves
+  let moves = 0;
+  // Start game seconds
+  let second = 0;
+
+  // Scoring system from 1 to 3 stars to shorten code
+  // Should be based on how many pairings there are, hence namesArray.length
+  let stars3 = namesArray.length - 2;
+  let stars2 = namesArray.length;
+  let star1 = namesArray.length + 6;
+
+  // AXIOS CALLS // 
+  // Get Team Names for the drop-down
+  const getTeams = () => {
+    axios.get("/api/team")
+      .then((response) => {
+
+        let s = "<option value=\"-1\">Team Selections</option>";
+        for (let i = 0; i < response.data.length; i++) {
+          s += `<option value=${response.data[i].id}>${response.data[i].name}</option>`;
+        }
+
+        $gameTeamSelection.html(s);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  // Get Questions for the drop-down
+  const getQuestions = () => {
+    axios.get("/api/question")
+      .then((response) => {
+
+        let s = "<option value=\"-1\">Question Selections</option>";
+        for (let i = 0; i < response.data.length; i++) {
+          s += `<option value=${response.data[i].id}>${response.data[i].question}</option>`;
+        }
+
+        $gameQuestionSelection.html(s);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  // do we need teamid as a param?
+  const getCards = (questionid) => {
+    axios.get(`/api/singleQuestion/${questionid}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   // Shuffling function: enables that no two games have the same card arrangement 
   function shuffle(array) {
@@ -184,7 +161,7 @@ $(function () {
 
   // Add boostrap modal alert window showing time, moves, score it took to finish the game, toggles when all pairs are matched.
   function gameOver(moves, score) {
-    $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done!`);
+    $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done team!`);
     $winnerModal.modal("toggle");
   }
 
@@ -270,7 +247,10 @@ $(function () {
   // On form submission, show game instructions
   $gameForm.on("submit", function (event) {
     event.preventDefault();
+    // Show game instructions
     $gameInstruct.css("display", "block");
+    // Axios to get the game data
+    getCards($gameQuestionSelection.val());
   });
 
   // On start game click, show memory board
@@ -278,7 +258,6 @@ $(function () {
     event.preventDefault();
     // hide instructions
     $gameInstruct.css("display", "none");
-
     // start game - create cards
     init();
   });
