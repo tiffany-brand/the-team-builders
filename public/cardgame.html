@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Team Builders - Memory Card Game</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Local CSS -->
+    <link rel="stylesheet" href="/assets/css/gamecss.css">
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/c502137733.js"></script>
+</head>
+
+<body>
+    <!-- Need navbar -->
+
+    <!-- Winner Modal - Appears when all cards have been matched -->
+    <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="winnerModal-label">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="winnerModal-label">Winner Alert!</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="winnerText"></p>
+                </div>
+                <div class="modal-footer">
+                    <!-- Reload the page when go again is clicked -->
+                    <button type="button" onclick="window.location.reload();" class="btn btn-default" data-dismiss="modal">Go Again!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Form to select team and question - will stay visible -->
+        <div class="row" id="game-form">
+            <div class="col-8 text-center mx-auto">
+                <form class="game-form">
+                    <div class="form-group">
+                        <label for="gameTeamSelection">Select a team.</label>
+                        <select class="form-control" id="gameTeamSelection">
+                            <!-- Drop-down populated via JS file -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gameQuestionSelection">Select a question.</label>
+                        <select class="form-control" id="gameQuestionSelection">
+                            <!-- Drop-down populated via JS file -->
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Game Instructions Row - Show on Form submit / Hide on Start Game -->
+        <div class="row game-instruct">
+            <div class="col-8 mx-auto">
+                <h1 class="text-center">Game Instructions</h1>
+                <p>This game will test not only your memory but also how well you know your teammates!<br>
+                    If you don't know them at all, not to worry. You will know them after the game.<br>
+                    If it's your answer flipped...shhh!<br>
+                    May the best team conquer the clock!<br>
+                </p>
+                <button type="submit" class="btn btn-primary" id="start-game">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Card board row -->
+        <div class="row show-cards">
+            <div class="col-12 card-board">
+                <div class="card-board">
+                    <section class="score-panel mx-auto text-center">
+                        <ul class="stars">
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                            <li><i class="fas fa-star"></i></li>
+                        </ul>
+                        <span class="moves">0</span> Moves | Time:
+                        <span class="timer">0</span> s
+                        <div class="restart">
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                    </section>
+                    <ul class="deck mx-auto"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Need footer? -->
+
+    <!-- Javascript -->
+    <!-- MUST BE IN THIS ORDER: jQuery, Popper.js, Bootstrap JS, Axios, local JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/assets/js/game.js"></script>
+</body>
+
+</html>
+
+<!-- Format based on -->
+<!-- https://github.com/Ul1ra/MemGame/blob/master/index.html -->

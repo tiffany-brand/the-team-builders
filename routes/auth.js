@@ -16,7 +16,7 @@ router.get("/login", passport.authenticate("auth0", {
   res.redirect("/");
 });
 
-// Perform the final stage of authentication and redirect to previously requested URL or '/user'
+// Perform the final stage of authentication and redirect to previously requested URL or '/dashboard'
 router.get("/callback", function (req, res, next) {
   passport.authenticate("auth0", function (err, user, info) {
     console.log(info);
@@ -33,7 +33,7 @@ router.get("/callback", function (req, res, next) {
       const newUser = createUser(userProfile);
       console.log(newUser);
       // send user to previous page or user profile
-      res.redirect(returnTo || "/user");
+      res.redirect(returnTo || "/dashboard");
     });
   })(req, res, next);
 });
@@ -44,7 +44,9 @@ router.get("/logout", (req, res) => {
 
   let returnTo = req.protocol + "://" + req.hostname;
   let port = req.connection.localPort;
-  if (port !== undefined && port !== 80 && port !== 443) {
+  // port !== undefined && port !== 80 && port !== 443 - trouble with heroku random ports
+  // if running locally, add the port to the logout url
+  if (port === 3000) {
     returnTo += ":" + port;
   }
   let logoutURL = new url.URL(

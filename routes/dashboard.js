@@ -1,11 +1,10 @@
-
 const express = require('express');
 const secured = require('../lib/middleware/secured');
 const router = express.Router();
 const db = require("../models");
 
 /* GET user profile. */
-router.get('/user', secured(), function (req, res, next) {
+router.get('/dashboard', secured(), function (req, res, next) {
   const { _raw, _json, ...userProfile } = req.user;
   db.Post.findAll({}).then((result) => {
     let posts = result.map(row => {
@@ -22,7 +21,7 @@ router.get('/user', secured(), function (req, res, next) {
         posts: posts
       }
     }
-    res.render('user', hbsObject);
+    res.render('dashboard', hbsObject);
   }).catch(err => console.log(err));
 });
 

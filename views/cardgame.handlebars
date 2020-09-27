@@ -1,0 +1,158 @@
+<!-- Navbar -->
+<nav class="container-fluid bg-white border-bottom border-dark">
+    <div class="row align-items-center">
+        <div class="col"></div>
+        <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+            <img src="/assets/img/mainlogo.png" alt="Team Builders" class="logoimg" />
+        </div>
+        <div class="col-md-6 mb-2 mb-md-0 mr-md-2">
+            <ul class="navbar-nav flex-row justify-content-md-end justify-content-center">
+                {{#if user }}
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 navstyle" href="/dashboard">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/user">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left border-right current-nav navstyle" href="/cardgame">Game<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 navstyle" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 current-nav navstyle" href="/">Home <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/login" tabindex="-1"
+                        aria-disabled="true">Log In</a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Banner Content -->
+<section class="container-fluid bg-lt-blue py-5">
+    <div class="row py-3 py-md-4">
+        <div class="col">
+            <h1 class="text-purple text-center h1style">Matching Game!</h1>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Winner Modal -->
+<div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="winnerModal-label">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="winnerModal-label">Winner Alert!</h4>
+            </div>
+            <div class="modal-body">
+                <p id="winnerText"></p>
+            </div>
+            <div class="modal-footer">
+                <!-- reload the page when go again is clicked -->
+                <button type="button" onclick="window.location.reload();" class="btn btn-default"
+                    data-dismiss="modal">Go Again!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Form to select team and question - hide on submit -->
+    <div class="row" id="game-form">
+        <div class="col-8 text-center mx-auto">
+            <form class="game-form">
+                <div class="form-group">
+                    <label for="gameTeamSelection">Select a team.</label>
+                    <select class="form-control" id="gameTeamSelection">
+                        <!-- How populate with the options from the DB?? -->
+                        <option>Team Builders</option>
+                        <option>Sales Team</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="gameQuestionSelection">Select a question.</label>
+                    <select class="form-control" id="gameQuestionSelection">
+                        <!-- How populate with the options from the DB?? -->
+                        <option>What is your favorite color?</option>
+                        <option>What was your favorite vacation?</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Game Instructions row - show/hide -->
+    <div class="row game-instruct">
+        <div class="col-8 mx-auto">
+            <h1 class="text-center">Game Instructions</h1>
+            <p>This game will test not only your memory but also how well you know your teammates!<br>
+                If it's your answer or name flipped...shhh!<br>
+                May the best team conquer!<br>
+            </p>
+            <button type="submit" class="btn btn-primary" id="start-game">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Card board row -->
+    <div class="row show-cards">
+        <div class="col-12 card-board">
+            <div class="card-board">
+                <ul class="deck mx-auto"></ul>
+                <section class="score-panel mx-auto text-center">
+                    <ul class="stars">
+                        <li><i class="fas fa-star"></i></li>
+                        <li><i class="fas fa-star"></i></li>
+                        <li><i class="fas fa-star"></i></li>
+                    </ul>
+                    <span class="moves">0</span> Moves | Time:
+                    <span class="timer">0</span> s
+                    <div class="restart">
+                        <i class="fa fa-repeat"></i>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer-margin bg-light">
+    <div class="navbar fixed-bottom navbar-dark bg-purple justify-content-center">
+        <span class="navbar-brand footer-font blue align-middle">Copyright &copy;2020
+            &ThickSpace;|&ThickSpace;
+            Team Builders</span>
+        <span>
+            <a class="fab fa-github fa-2x lt-blue" href="https://github.com/hilbug/the-team-builders"
+                target="_blank"></a>
+            &ThickSpace;
+        </span>
+    </div>
+</footer>
+
+<!-- Javascript -->
+<!-- jQuery, Popper.js, Bootstrap JS, local JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+<script src="/assets/js/game.js"></script>
+
+<!-- Format based on -->
+<!-- https://github.com/Ul1ra/MemGame/blob/master/index.html -->
