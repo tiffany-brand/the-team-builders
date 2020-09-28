@@ -19,17 +19,25 @@ router.get('/user', secured(), function (req, res, next) {
         model: db.Answer,
         where: {
           TeamMemberId: teamMember.id
-        }
-      }
+        },
+        required: false
+      },
+      required: false
     })
       .then(function (dbQuestions) {
         let userQa = dbQuestions.map((quest) => {
-          return { questionId: quest.id, question: quest.question, answerId: quest.Answers[0].id, answer: quest.Answers[0].answer }
+          if (quest.Answers[0]) {
+            return { questionId: quest.id, question: quest.question, answerId: quest.Answers[0].id, answer: quest.Answers[0].answer }
+          } else {
+            return { questionId: quest.id, question: quest.question, answerId: "", answer: "" }
+          }
+
         })
         console.log(userQa)
         // send user data to user view
         const hbsObject = {
           user: {
+            id: teamMember.id,
             email: teamMember.email,
             picture: teamMember.picture,
             displayName: `${teamMember.first_name} ${teamMember.last_name}`,
@@ -41,6 +49,7 @@ router.get('/user', secured(), function (req, res, next) {
           }
         }
         console.log(hbsObject);
+        console.log(hbsObject.user.userQa[0])
         res.render('user', hbsObject);
       });
   }).catch(err => console.log(err));

@@ -11,6 +11,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const dashboardRouter = require("./routes/dashboard");
 const cardgameRouter = require("./routes/cardgame-route");
+const imageUpdateRouter = require("./routes/image-update");
 
 const apiTeamMember = require("./routes/api-team_member");
 const apiTeam = require("./routes/api-team_name");
@@ -98,6 +99,7 @@ app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/", dashboardRouter);
 app.use("/", cardgameRouter);
+app.use("/", imageUpdateRouter);
 
 app.use("/", apiTeamMember);
 app.use("/", apiTeam);

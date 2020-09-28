@@ -27,5 +27,8 @@
             "error",
             "always"
         ]
+    },
+    "globals": {
+        "axios": "readonly"
     }
 }
