@@ -7,7 +7,6 @@
          url('./fonts/fv_almelo-webfont.svg') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 .logoimg {
@@ -171,9 +170,19 @@ a.nav-link:hover,
     font-size: 40px;
 }
 
+.btn-width3 {
+    width: 125px;
+    letter-spacing: 2px;
+}
+
 .home-header {
     font-size: 72px;
     background: -webkit-linear-gradient(#5b247a, #1bcedf);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.img-style {
+    width: 600px;
+    height: 600px;
 }
