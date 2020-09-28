@@ -11,11 +11,11 @@ router.get("/image-update", secured(), function (req, res, next) {
             auth0_id: userProfile.id
         }
     }).then((teamMember) => {
+        // send the user id and user picture to the view
         const hbsObject = {
             user: {
                 id: teamMember.id,
                 picture: teamMember.picture,
-                api_key: process.env.FILESTACK_APIKEY
             }
         }
         res.render("image-update", hbsObject);

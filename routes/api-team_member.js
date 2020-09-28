@@ -61,4 +61,9 @@ router.get("/api/teamMember/:teamid", function (req, res) {
     });
 });
 
+// get Filestack api key for image storage
+router.get("/api/filestack", function (req, res) {
+  res.json(process.env.FILESTACK_APIKEY);
+});
+
 module.exports = router;
