@@ -6,6 +6,13 @@ $(function () {
       accept: ["image/*"],
       onFileUploadFinished: (file) => {
         console.log(file);
+        axios.put("/api/profile",
+          {
+            id: user,
+            picture: file.url
+          }).then(() => {
+            window.location.replace("/user");
+          }).catch((err) => console.log(err));
 
       }
     };
