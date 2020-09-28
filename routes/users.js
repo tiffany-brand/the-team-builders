@@ -30,6 +30,7 @@ router.get('/user', secured(), function (req, res, next) {
         // send user data to user view
         const hbsObject = {
           user: {
+            id: teamMember.id,
             email: teamMember.email,
             picture: teamMember.picture,
             displayName: `${teamMember.first_name} ${teamMember.last_name}`,
