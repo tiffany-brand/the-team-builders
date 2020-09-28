@@ -46,14 +46,16 @@
 
 .deck .gamecard.show {
     font-size: 20px;
+    background-image: none;
 }
 
 .deck .gamecard.match {
     cursor: default;
+    background-image: none;
     border-color:rgba(50,150,190,1);
     border-style: double;
     border-width: 5px;
-    background-color: white;
+    background-color: lightgray;
     font-size: 20px;
 }
 
