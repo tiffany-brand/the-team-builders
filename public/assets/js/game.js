@@ -55,6 +55,16 @@ $(function () {
   let stars2 = namesArray.length;
   let star1 = namesArray.length + 6;
 
+  // Audio
+  // Card click sound
+  const clickSound = new Audio("./assets/audio/click_x.wav");
+  // Card match sound
+  const matchSound = new Audio("./assets/audio/chime.wav");
+  // Card not match sound
+  const badMatchSound = new Audio("./assets/audio/peeeooop_x.wav");
+  // Game end cheering sound
+  const cheerSound = new Audio("./assets/audio/cheering.wav");
+
   // AXIOS CALLS // 
   // Get Team Names for the drop-down
   const getTeams = () => {
@@ -174,6 +184,9 @@ $(function () {
 
   // Add boostrap modal alert window showing time, moves, score it took to finish the game, toggles when all pairs are matched.
   const gameOver = (moves, score) => {
+    // play cheering sound
+    cheerSound.play();
+
     $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done team!`);
     $winnerModal.modal("toggle");
   };
@@ -199,6 +212,9 @@ $(function () {
 
     // With the following, the card that is clicked on is flipped
     $deck.find(".card").bind("click", function () {
+      // Card click sound
+      clickSound.play();
+      
       let $this = $(this);
 
       if ($this.hasClass("show") || $this.hasClass("match")) { return true; }
@@ -210,6 +226,9 @@ $(function () {
       // Compares cards if they matched
       if (allOpen.length > 1) {
         if (cardId === allOpen[0]) {
+          // match sound
+          matchSound.play();
+          
           $deck.find(".open").addClass("match");
           setTimeout(function () {
             $deck.find("open").removeClass("open show");
@@ -218,6 +237,9 @@ $(function () {
 
           // If cards are not matched, there is a delay of 630ms, and the cards will turn back cover up.
         } else {
+          // Bad Match sound
+          badMatchSound.play();
+
           $deck.find(".open").addClass("notmatch");
           setTimeout(function () {
             $deck.find(".open").removeClass("open show");
