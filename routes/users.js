@@ -41,6 +41,7 @@ router.get('/user', secured(), function (req, res, next) {
           }
         }
         console.log(hbsObject);
+        console.log(hbsObject.user.userQa[0])
         res.render('user', hbsObject);
       });
   }).catch(err => console.log(err));
