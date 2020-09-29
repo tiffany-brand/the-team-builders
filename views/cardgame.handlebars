@@ -40,7 +40,7 @@
 <section class="container-fluid bg-lt-blue py-5">
     <div class="row py-3 py-md-4">
         <div class="col">
-            <h1 class="text-purple text-center h1style">Matching Game!</h1>
+            <h1 class="text-white text-center h1style">Matching Game!</h1>
         </div>
     </div>
 </section>
@@ -52,26 +52,26 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="winnerModal-label">Winner Alert!</h4>
+                <h4 class="modal-title" id="winnerModal-label">Congratulations!</h4>
             </div>
             <div class="modal-body">
                 <p id="winnerText"></p>
             </div>
             <div class="modal-footer">
                 <!-- reload the page when go again is clicked -->
-                <button type="button" onclick="window.location.reload();" class="btn btn-default"
+                <button type="button" onclick="window.location.reload();" class="btn btn-default bg-lt-blue btn-text text-white px-4"
                     data-dismiss="modal">Go Again!</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container mt-4">
 
     <!-- Form to select team and question - hide on submit -->
     <div class="row" id="game-form">
         <div class="col-8 text-center mx-auto">
-            <form class="game-form">
+            <form class="game-form mb-5">
                 <div class="form-group">
                     <label for="gameTeamSelection">Select a team.</label>
                     <select class="form-control" id="gameTeamSelection">
@@ -88,20 +88,20 @@
                         <option>What was your favorite vacation?</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn bg-lt-blue text-white btn-text px-4 mt-3">Submit</button>
             </form>
         </div>
     </div>
 
     <!-- Game Instructions row - show/hide -->
     <div class="row game-instruct">
-        <div class="col-8 mx-auto">
-            <h1 class="text-center">Game Instructions</h1>
+        <div class="col-8 text-center mx-auto">
+            <h1 class="lt-blue">Game Instructions</h1>
             <p>This game will test not only your memory but also how well you know your teammates!<br>
                 If it's your answer or name flipped...shhh!<br>
                 May the best team conquer!<br>
             </p>
-            <button type="submit" class="btn btn-primary" id="start-game">Start Game</button>
+            <button type="submit" class="btn bg-lt-blue text-white btn-text px-4 mt-3" id="start-game">Start Game</button>
         </div>
     </div>
 
@@ -112,9 +112,9 @@
                 <ul class="deck mx-auto"></ul>
                 <section class="score-panel mx-auto text-center">
                     <ul class="stars">
-                        <li><i class="fas fa-star"></i></li>
-                        <li><i class="fas fa-star"></i></li>
-                        <li><i class="fas fa-star"></i></li>
+                        <li><i class="fas fa-star lt-blue no-hover"></i></li>
+                        <li><i class="fas fa-star lt-blue no-hover"></i></li>
+                        <li><i class="fas fa-star lt-blue no-hover"></i></li>
                     </ul>
                     <span class="moves">0</span> Moves | Time:
                     <span class="timer">0</span> s
@@ -128,7 +128,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer-margin bg-light">
+<footer class="footer-margin bg-white">
     <div class="navbar fixed-bottom navbar-dark bg-purple justify-content-center">
         <span class="navbar-brand footer-font blue align-middle">Copyright &copy;2020
             &ThickSpace;|&ThickSpace;

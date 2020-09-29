@@ -190,3 +190,16 @@ a.nav-link:hover,
     width: 600px;
     height: 600px;
 }
+
+.no-hover:hover {
+    color: rgba(50,150,190,1);
+}
+
+.btn:hover {
+    background-color: #5b247a;
+}
+
+.dashboard-banner {
+    font-size: 30px;
+
+}

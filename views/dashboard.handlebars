@@ -63,46 +63,81 @@
         <div class="col-xl-8">
             <div class="container bg-white border border-purple mt-xl-n5 mt-4 py-3">
                 <div class="row my-4 d-flex justify-content-around">
-                    <a href="/user"
-                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Update Profile</a>
-                    <a type="button" data-toggle="modal" data-target="#viewTeams" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">View Teams</a>
+                    <a href="/user" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Update
+                        Profile</a>
+                    <a type="button" data-toggle="modal" data-target="#viewTeamModal"
+                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">View Teams</a>
                 </div>
                 <div class="row mb-4 d-flex justify-content-around">
-                    <a type="button" data-toggle="modal" data-target="#createTeam" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Create A
+                    <a type="button" data-toggle="modal" data-target="#createTeamModal"
+                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Create A
                         Team</a>
                     <a href="/cardgame" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">Start A
                         Game</a>
                 </div>
             </div>
-            <div class="container d-flex justify-content-around bg-new py-3 mt-4 text-white w-50 float-left">
-                <div class="h3">YOUR TEAM: </div>
-                <div class="h3">Team Builders</div>
+            <div class="d-none d-sm-none d-md-block container text-center bg-new py-3 mt-4 text-purple">
+                <h3 class="btn-text dashboard-banner mb-0">Build Teams | Foster Creativity | Strengthen Culture</h3>
+            </div>
+            <div class="d-none d-sm-block d-md-none container d-flex flex-column bg-new py-3 mt-4 text-purple">
+                <h3 class="btn-text dashboard-banner mb-0 text-center">Build Teams</h3>
+                <h3 class="btn-text dashboard-banner mb-0 text-center">Foster Creativity</h3>
+                <h3 class="btn-text dashboard-banner mb-0 text-center">Strengthen Culture</h3>
             </div>
         </div>
         <div class="col"></div>
     </div>
-    </div>
 </section>
 
-{{!-- Modal --}}
+{{!-- View Teams Modal --}}
 <div class="modal fade" id="viewTeamModal" tabindex="-1" aria-labelledby="viewTeamModal" aria-hidden="false">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">View Teams</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Display All Teams Here!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewTeamModalLabel">Current Teams</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="teams_list">
+                    {{!-- ********** --}}
+                    {{!-- Nicole:  I'm not 100% sure what will go in here... --}}
+                    {{!-- ********** --}}
+                    {{#each teamName}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-lt-blue text-white btn-text px-4" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
+
+{{!-- Create Team Modal --}}
+<div class="modal fade" id="createTeamModal" tabindex="-1" aria-labelledby="createTeamModal" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTeamModalLabel">Create A Team</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="input" class="col-form-label">Team Name</label>
+                    <input type="text" class="form-control" id="newTeamName">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn bg-lt-blue text-white btn-text px-4" id="saveNewTeamBtn">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {{!-- Footer --}}
