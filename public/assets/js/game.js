@@ -282,6 +282,7 @@ $(function () {
     // Axios to get the game data
     getCards($gameTeamSelection.val(), $gameQuestionSelection.val());
     // Show game instructions
+    $gameForm.css("display", "none");
     $gameInstruct.css("display", "block");
   });
 
