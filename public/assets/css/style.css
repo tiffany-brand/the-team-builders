@@ -69,10 +69,6 @@ a.nav-link:hover,
     background-color: #5b247a;
 }
 
-/* .learn-more {
-    color: #5b247a;
-} */
-
 .game-board-back {
     display: flex;
     max-width: 960px;
@@ -175,7 +171,7 @@ a.nav-link:hover,
 }
 
 .btn-width3 {
-    width: 125px;
+    width: 150px;
     letter-spacing: 2px;
 }
 
@@ -189,4 +185,31 @@ a.nav-link:hover,
 .img-style {
     width: 600px;
     height: 600px;
+}
+
+.no-hover:hover {
+    color: rgba(50,150,190,1);
+}
+
+.btn:hover {
+    background-color: #5b247a;
+}
+
+.dashboard-banner {
+    font-size: 30px;
+}
+
+.learnImg {
+    width: 350px;
+    height: 350px;
+}
+
+.learn-more {
+    color: #5b247a;
+    font-size: 18px;
+}
+
+.icon-title {
+    letter-spacing: 2px;
+    font-size: 18px;
 }
