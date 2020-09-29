@@ -8,6 +8,7 @@ const Auth0Strategy = require("passport-auth0");
 const userInViews = require("./lib/middleware/userInViews");
 const authRouter = require("./routes/auth");
 const indexRouter = require("./routes/index");
+const learnmoreRouter = require("./routes/learnmore");
 const usersRouter = require("./routes/users");
 const dashboardRouter = require("./routes/dashboard");
 const cardgameRouter = require("./routes/cardgame-route");
@@ -98,6 +99,7 @@ app.use("/", authRouter);
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/", dashboardRouter);
+app.use("/", learnmoreRouter);
 app.use("/", cardgameRouter);
 app.use("/", imageUpdateRouter);
 

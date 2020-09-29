@@ -69,6 +69,10 @@ a.nav-link:hover,
     background-color: #5b247a;
 }
 
+/* .learn-more {
+    color: #5b247a;
+} */
+
 .game-board-back {
     display: flex;
     max-width: 960px;
