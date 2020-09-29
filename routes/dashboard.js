@@ -12,20 +12,31 @@ router.get('/dashboard', secured(), function (req, res, next) {
       auth0_id: userProfile.id
     }
   }).then((teamMember) => {
-    // send user data to dashboard view
-    const hbsObject = {
-      user: {
-        email: teamMember.email,
-        picture: teamMember.picture,
-        displayName: `${teamMember.first_name} ${teamMember.last_name}`,
-        firstName: teamMember.first_name,
-        lastName: teamMember.last_name,
-        nickname: teamMember.nick_name,
-        teamId: teamMember.TeamId
-      }
-    }
-    console.log(hbsObject)
-    res.render('dashboard', hbsObject);
+    // get all team names
+    db.Team.findAll({})
+      .then((dbTeams) => {
+
+        let teams = dbTeams.map((team) => {
+          return { teamId: team.id, teamName: team.name }
+        });
+        console.log(teams);
+
+        // send user data to dashboard view
+        const hbsObject = {
+          user: {
+            email: teamMember.email,
+            picture: teamMember.picture,
+            displayName: `${teamMember.first_name} ${teamMember.last_name}`,
+            firstName: teamMember.first_name,
+            lastName: teamMember.last_name,
+            nickname: teamMember.nick_name,
+            teamId: teamMember.TeamId,
+            teams: teams
+          }
+        }
+        console.log(hbsObject);
+        res.render('dashboard', hbsObject);
+      });
   }).catch(err => console.log(err));
 });
 
