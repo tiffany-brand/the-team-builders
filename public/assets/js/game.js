@@ -189,6 +189,9 @@ $(function () {
 
     $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done team!`);
     $winnerModal.modal("toggle");
+
+    // stops the clock when game is over
+    resetTimer(nowTime);
   };
 
   // Initiates the timer as soon as the game is loaded
