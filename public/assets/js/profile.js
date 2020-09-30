@@ -22,20 +22,20 @@ $(function () {
 
   $updateProfile.data("id", userID);
 
-  // // Update user answers to questions in database
-  // const updateTalentAnswer = (userID) => {
-  //   axios.put('/api/answer', {
-  //     TeamMemberId: userID,
-  //     QuestionId: talentID,
-  //     answer: $talent.val().trim()
-  //   })
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     })
-  // }
+  // Update user answers to questions in database
+  const updateTalentAnswer = () => {
+    axios.put('/api/answer', {
+      // TeamMemberId: userID,
+      AnswerId: talentID,
+      answer: $talent.val().trim()
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
 
   // Post Answers
   const addTalentAnswer = (userID) => {
