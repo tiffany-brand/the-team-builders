@@ -104,24 +104,34 @@ $(function () {
   const getCards = (teamid, questionid) => {
     axios.get(`/api/singleQuestion/${questionid}/${teamid}`)
       .then((response) => {
-        // Since pushing response.data would push everything into an array with length 1
-        // setting the array and then pushing each returned object into the users array
-        // maps the map functions work later on in the function
+        /*
+        Since pushing response.data would push everything into an array with length 1,
+        setting the array and then pushing each returned object into the users array
+        allows the map functions work later on in the function
+        */
+
         let array = response.data;
-        array.forEach((element) => users.push(element));
 
-        // Set the name and answer arrays that we will need for creating the cards later
-        namesArray = users.map((user) => {
-          return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
-        });
-
-        answersArray = users.map((user) => {
-          return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
-        });
-
-        // Combine the arrays together and get the totalCard to use in matching logic
-        allArray = namesArray.concat(answersArray);
-        totalCard = allArray.length / 2;
+        if (array.length === 0) {
+          alert("There are no answers to generate game cards.");
+          $gameInstruct.empty();
+          return;
+        } else {
+          array.forEach((element) => users.push(element));
+  
+          // Set the name and answer arrays that we will need for creating the cards later
+          namesArray = users.map((user) => {
+            return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
+          });
+  
+          answersArray = users.map((user) => {
+            return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
+          });
+  
+          // Combine the arrays together and get the totalCard to use in matching logic
+          allArray = namesArray.concat(answersArray);
+          totalCard = allArray.length / 2;
+        }
       })
       .catch(function (error) {
         console.log(error);
