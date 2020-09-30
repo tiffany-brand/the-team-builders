@@ -308,6 +308,12 @@ $(function () {
     // start game - create cards
     init();
   });
+
+  // Reload page if modal is closed by clicking outside of it
+  // StackOverflow: https://stackoverflow.com/questions/44964050/refresh-page-after-bootstrap-modal-close/44964080
+  $winnerModal.on("hidden.bs.modal", function () { 
+    location.reload();
+  });
 });
 
 /*
