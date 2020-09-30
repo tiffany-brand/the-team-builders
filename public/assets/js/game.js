@@ -11,7 +11,7 @@ $(function () {
   const $startGame = $("#start-game");
   // Area to attach cards
   const $deck = $(".deck");
-  
+
   // Score & Modal
   // Timer
   let $timer = $(".timer");
@@ -104,24 +104,34 @@ $(function () {
   const getCards = (teamid, questionid) => {
     axios.get(`/api/singleQuestion/${questionid}/${teamid}`)
       .then((response) => {
-        // Since pushing response.data would push everything into an array with length 1
-        // setting the array and then pushing each returned object into the users array
-        // maps the map functions work later on in the function
+        /*
+        Since pushing response.data would push everything into an array with length 1,
+        setting the array and then pushing each returned object into the users array
+        allows the map functions work later on in the function
+        */
+
         let array = response.data;
-        array.forEach((element) => users.push(element));
-        
-        // Set the name and answer arrays that we will need for creating the cards later
-        namesArray = users.map((user) => {
-          return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
-        });
 
-        answersArray = users.map((user) => {
-          return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
-        });
-
-        // Combine the arrays together and get the totalCard to use in matching logic
-        allArray = namesArray.concat(answersArray);
-        totalCard = allArray.length / 2;
+        if (array.length === 0) {
+          alert("There are no answers to generate game cards.");
+          $gameInstruct.empty();
+          return;
+        } else {
+          array.forEach((element) => users.push(element));
+  
+          // Set the name and answer arrays that we will need for creating the cards later
+          namesArray = users.map((user) => {
+            return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
+          });
+  
+          answersArray = users.map((user) => {
+            return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
+          });
+  
+          // Combine the arrays together and get the totalCard to use in matching logic
+          allArray = namesArray.concat(answersArray);
+          totalCard = allArray.length / 2;
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -189,6 +199,9 @@ $(function () {
 
     $winnerText.text(`In ${second} seconds, you did a total of ${moves} moves with a score of ${score}. Well done team!`);
     $winnerModal.modal("toggle");
+
+    // stops the clock when game is over
+    resetTimer(nowTime);
   };
 
   // Initiates the timer as soon as the game is loaded
@@ -214,7 +227,7 @@ $(function () {
     $deck.find(".card").bind("click", function () {
       // Card click sound
       clickSound.play();
-      
+
       let $this = $(this);
 
       if ($this.hasClass("show") || $this.hasClass("match")) { return true; }
@@ -228,7 +241,7 @@ $(function () {
         if (cardId === allOpen[0]) {
           // match sound
           matchSound.play();
-          
+
           $deck.find(".open").addClass("match");
           setTimeout(function () {
             $deck.find("open").removeClass("open show");
@@ -270,6 +283,13 @@ $(function () {
     });
   };
 
+  // Function to alert if there is no selection in the team drop-down or no selection in the question drop-down
+  const noSelectionAlert = (teamidval, questionidval) => {
+    if (teamidval === "-1" || questionidval === "-1") {
+      return alert("Team and question selections are required to start the game.");
+    }
+  };
+
   // FUNCTION CALLS //
   // Populate drop-downs
   getTeams();
@@ -279,10 +299,15 @@ $(function () {
   // On form submission, show game instructions
   $gameForm.on("submit", function (event) {
     event.preventDefault();
-    // Axios to get the game data
-    getCards($gameTeamSelection.val(), $gameQuestionSelection.val());
-    // Show game instructions
-    $gameInstruct.css("display", "block");
+    // Alert if drop-downs have not been selected
+    if ($gameTeamSelection.val() < 0 || $gameQuestionSelection.val() < 0) {
+      return noSelectionAlert($gameTeamSelection.val(), $gameQuestionSelection.val());
+    } else {
+      // Axios to get the game data
+      getCards($gameTeamSelection.val(), $gameQuestionSelection.val());
+      // Show game instructions
+      $gameInstruct.css("display", "block");
+    }
   });
 
   // On start game click, show memory board
@@ -292,6 +317,12 @@ $(function () {
     $gameInstruct.css("display", "none");
     // start game - create cards
     init();
+  });
+
+  // Reload page if modal is closed by clicking outside of it
+  // StackOverflow: https://stackoverflow.com/questions/44964050/refresh-page-after-bootstrap-modal-close/44964080
+  $winnerModal.on("hidden.bs.modal", function () { 
+    location.reload();
   });
 });
 
