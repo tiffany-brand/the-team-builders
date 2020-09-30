@@ -112,26 +112,20 @@ $(function () {
 
         let array = response.data;
 
-        if (array.length === 0) {
-          alert("There are no answers to generate game cards.");
-          $gameInstruct.empty();
-          return;
-        } else {
-          array.forEach((element) => users.push(element));
-  
-          // Set the name and answer arrays that we will need for creating the cards later
-          namesArray = users.map((user) => {
-            return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
-          });
-  
-          answersArray = users.map((user) => {
-            return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
-          });
-  
-          // Combine the arrays together and get the totalCard to use in matching logic
-          allArray = namesArray.concat(answersArray);
-          totalCard = allArray.length / 2;
-        }
+        array.forEach((element) => users.push(element));
+
+        // Set the name and answer arrays that we will need for creating the cards later
+        namesArray = users.map((user) => {
+          return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
+        });
+
+        answersArray = users.map((user) => {
+          return { cardvalue: user.answer, id: user.TeamMember.auth0_id };
+        });
+
+        // Combine the arrays together and get the totalCard to use in matching logic
+        allArray = namesArray.concat(answersArray);
+        totalCard = allArray.length / 2;
       })
       .catch(function (error) {
         console.log(error);
@@ -321,7 +315,7 @@ $(function () {
 
   // Reload page if modal is closed by clicking outside of it
   // StackOverflow: https://stackoverflow.com/questions/44964050/refresh-page-after-bootstrap-modal-close/44964080
-  $winnerModal.on("hidden.bs.modal", function () { 
+  $winnerModal.on("hidden.bs.modal", function () {
     location.reload();
   });
 });
