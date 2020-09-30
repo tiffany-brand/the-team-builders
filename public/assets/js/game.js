@@ -11,7 +11,7 @@ $(function () {
   const $startGame = $("#start-game");
   // Area to attach cards
   const $deck = $(".deck");
-  
+
   // Score & Modal
   // Timer
   let $timer = $(".timer");
@@ -109,7 +109,7 @@ $(function () {
         // maps the map functions work later on in the function
         let array = response.data;
         array.forEach((element) => users.push(element));
-        
+
         // Set the name and answer arrays that we will need for creating the cards later
         namesArray = users.map((user) => {
           return { cardvalue: user.TeamMember.nick_name, id: user.TeamMember.auth0_id };
@@ -214,7 +214,7 @@ $(function () {
     $deck.find(".card").bind("click", function () {
       // Card click sound
       clickSound.play();
-      
+
       let $this = $(this);
 
       if ($this.hasClass("show") || $this.hasClass("match")) { return true; }
@@ -228,7 +228,7 @@ $(function () {
         if (cardId === allOpen[0]) {
           // match sound
           matchSound.play();
-          
+
           $deck.find(".open").addClass("match");
           setTimeout(function () {
             $deck.find("open").removeClass("open show");
@@ -270,6 +270,13 @@ $(function () {
     });
   };
 
+  // Function to alert if there is no selection in the team drop-down or no selection in the question drop-down
+  const noSelectionAlert = (teamidval, questionidval) => {
+    if (teamidval === "-1" || questionidval === "-1") {
+      return alert("Team and question selections are required to start the game.");
+    }
+  };
+
   // FUNCTION CALLS //
   // Populate drop-downs
   getTeams();
@@ -279,10 +286,15 @@ $(function () {
   // On form submission, show game instructions
   $gameForm.on("submit", function (event) {
     event.preventDefault();
-    // Axios to get the game data
-    getCards($gameTeamSelection.val(), $gameQuestionSelection.val());
-    // Show game instructions
-    $gameInstruct.css("display", "block");
+    // Alert if drop-downs have not been selected
+    if ($gameTeamSelection.val() < 0 || $gameQuestionSelection.val() < 0) {
+      return noSelectionAlert($gameTeamSelection.val(), $gameQuestionSelection.val());
+    } else {
+      // Axios to get the game data
+      getCards($gameTeamSelection.val(), $gameQuestionSelection.val());
+      // Show game instructions
+      $gameInstruct.css("display", "block");
+    }
   });
 
   // On start game click, show memory board
