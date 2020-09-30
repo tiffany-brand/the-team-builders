@@ -1,0 +1,110 @@
+{{!-- Navbar --}}
+<nav class="container-fluid bg-white border-bottom border-dark">
+    <div class="row align-items-center">
+        <div class="col"></div>
+        <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+            <img src="/assets/img/mainlogo.png" alt="Team Builders" class="logoimg" />
+        </div>
+        <div class="col-md-6 mb-2 mb-md-0 mr-md-2">
+            <ul class="navbar-nav flex-row justify-content-md-end justify-content-center">
+                {{#if user }}
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 current-nav navstyle" href="/dashboard">Home<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/user">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left border-right navstyle" href="/cardgame">Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 navstyle" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link px-2 mx-2 navstyle" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left current-nav navstyle" href="/learnmore">Learn More<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-0 mt-2 border-left navstyle" href="/login" tabindex="-1"
+                        aria-disabled="true">Log In</a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{{!-- Banner --}}
+<section class="container-fluid bg-lt-blue py-3">
+    <div class="row py-3 py-md-4">
+        <div class="col">
+            <h1 class="text-white text-center h1style">About Team Builder</h1>
+        </div>
+    </div>
+</section>
+
+{{!-- Logo & Learn More Info --}}
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 d-flex justify-content-center">
+            <img src="/assets/img/logo.png" alt"circle logo" class="learnImg">
+        </div>
+        <div class="col-lg-8">
+            <div class="container text-center">
+                <h6 class="learn-more mt-lg-5">Due to the unprecedented shift to a remote workforce, it can be
+                    difficult
+                    for teams to
+                    create and maintain a cohesive bond. New members joining a team may find it harder to connect
+                    with peers.
+                    Managers may not have the right tools to help bring their team together. Team Builders aims to
+                    help build
+                    teams, foster creativity, and strengthen culture!</h6>
+                <h6 class="learn-more">Team Builder provides customized tools for tackling this issue.</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{!-- 3 Service Descriptions --}}
+<section class="container-fluid text-center p-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <i class="fas fa-users fa-3x pt-3 pb-5 lt-blue"></i>
+            <p class="btn-text icon-title lt-blue">BUILD TEAMS</p>
+            <p>Team Builder is dedicated to helping your business or other group build teams efficiently and effectively.</p>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <i class="fas fa-hands fa-3x pt-3 pb-5 lt-blue"></i>
+            <p class="btn-text icon-title lt-blue">FOSTER CREATIVITY</p>
+            <p>Our team building activities are designed to bring teams together on a common level and foster creativity
+                in the workplace.</p>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <i class="fas fa-dumbbell fa-3x pt-3 pb-5 lt-blue"></i>
+            <p class="btn-text icon-title lt-blue">STRENGTHEN CULTURE</p>
+            <p>Team Builder recognizes the need for culture integration and delivers stronger cultures through enrichened team building.</p>
+        </div>
+    </div>
+</section>
+
+{{!-- Button --}}
+<section class="container">
+    <div class="row d-flex justify-content-center">
+        <a href="/login" class="btn bg-lt-blue text-white btn-text btn-width3">SIGN UP / LOGIN</a>
+    </div>
+</section>
+
+
+{{!-- Footer --}}
+<footer class="footer-margin bg-white">
+    <div class="navbar fixed-bottom navbar-dark bg-purple justify-content-center">
+        <span class="navbar-brand footer-font blue align-middle">Copyright &copy;2020
+            &ThickSpace;|&ThickSpace;
+            Team Builder</span>
+    </div>
+</footer>
