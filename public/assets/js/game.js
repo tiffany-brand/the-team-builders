@@ -159,7 +159,8 @@ $(function () {
 
     // Append cards to deck
     for (let i = 0; i < allCards.length; i++) {
-      let idDiv = $("<div>").text(`${i}`).addClass("text-center");
+      let cardNum = i+1;
+      let idDiv = $("<div>").text(`${cardNum}`).addClass("text-center");
       let cardDiv = $(`<li class="card gamecard text-wrap" data-id=${allCards[i].id}">${allCards[i].cardvalue}</li>`);
       let cardIDDiv = idDiv.append(cardDiv);
       $deck.append(cardIDDiv);
