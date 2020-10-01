@@ -14,13 +14,13 @@ $(function () {
   const $teamDD = $("#inputTeam");
   const $updateProfile = $("#updateProfile");
   const $submitForm = $(".submitForm");
+
   let userID = $updateProfile.data("id");
-  console.log("testing userID");
-  console.log(userID);
 
   $updateProfile.data("id", userID);
 
-  // / Get User
+
+  // Get User Info
   const getUser = (userID) => {
     axios.get(`/api/profile/${userID}`).then((response) => {
       console.log(response.data);
@@ -28,8 +28,8 @@ $(function () {
     });
   };
 
-   // Get Team Names for the drop-down
-   const getTeams = () => {
+  // Get Team Names for the drop-down
+  const getTeams = () => {
     axios.get("/api/team")
       .then((response) => {
 
@@ -45,29 +45,9 @@ $(function () {
       });
   };
 
-  // // Get Team Names for the drop-down
-  // const getTeams = () => {
-  //   axios.get("/api/team")
-  //     .then((response) => {
-
-  //       // let option = $("<option>")
-  //       let s = $("<option>").attr("value","-1").text("Team Selections");
-  //       // let s = "<option value=\"-1\">Team Selections</option>";
-  //       for (let i = 0; i < response.data.length; i++) {
-  //         $teamDD.append($("<option>").attr("value",response.data[i].id).text(response.data[i].name))
-  //         // s += `<option value=${response.data[i].id}>${response.data[i].name}</option>`;
-  //       }
-
-  //       $teamDD.html(s);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
   // Update user info to database
   const addUserInfo = (userID) => {
-    const firstName = $firstName.val().trim();
+    let firstName = $firstName.val().trim();
     axios.put("/api/profile", {
       id: userID,
       first_name: firstName,
@@ -91,31 +71,41 @@ $(function () {
         $lastName.val(response.data.last_name);
         $nickName.val(response.data.nick_name);
         $teamDD.val(response.data.TeamId);
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
+
   getTeams();
   repopulateUserInfo(userID);
-  console.log("User ID from getUser")
   getUser(userID);
-  
 
 
- $submitForm.on("submit", function (event) {
+// event listener on submit button
+  $submitForm.on("submit", function (event) {
     event.preventDefault();
-    // let btnUserID = $(this).data("id");
-    let btnUserID = $firstName.attr("data-id");
-    console.log("userID from save button");
-    console.log(btnUserID);
-    addUserInfo(btnUserID);
+
+    const formData = new FormData($submitForm.get(0));
+    const data = [];
+    for (const [key, value] of formData.entries()) {
+      data.push({questionId: key, value: value});
+      console.log(value);
+    }
+    axios.post(`/api/answer/all/${userID}`, data).then(function() {
+      window.location.reload()
+    });
+
+
+    addUserInfo(userID);
+
+    
 
   });
 
-  
+
 
 });
 
