@@ -22,7 +22,7 @@ router.get("/callback", function (req, res, next) {
 
     if (err) { return next(err); }
     if (!user) { return res.redirect("/login"); }
-    req.logIn(user, function (err) {
+    req.logIn(user, async function (err) {
       if (err) { return next(err); }
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
@@ -30,7 +30,7 @@ router.get("/callback", function (req, res, next) {
       const { _raw, _json, ...userProfile } = user;
 
       // creates a user in the team_member table if not there
-      const newUser = createUser(userProfile);
+      const newUser = await createUser(userProfile);
 
       // send user to previous page or user profile
       res.redirect(returnTo || "/dashboard");
