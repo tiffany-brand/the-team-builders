@@ -19,19 +19,19 @@ router.get("/login", passport.authenticate("auth0", {
 // Perform the final stage of authentication and redirect to previously requested URL or '/dashboard'
 router.get("/callback", function (req, res, next) {
   passport.authenticate("auth0", function (err, user, info) {
-    console.log(info);
+
     if (err) { return next(err); }
     if (!user) { return res.redirect("/login"); }
-    req.logIn(user, function (err) {
+    req.logIn(user, async function (err) {
       if (err) { return next(err); }
       const returnTo = req.session.returnTo;
       delete req.session.returnTo;
-      console.log(user);
+
       const { _raw, _json, ...userProfile } = user;
-      console.log(userProfile);
+
       // creates a user in the team_member table if not there
-      const newUser = createUser(userProfile);
-      console.log(newUser);
+      const newUser = await createUser(userProfile);
+
       // send user to previous page or user profile
       res.redirect(returnTo || "/dashboard");
     });
@@ -44,7 +44,7 @@ router.get("/logout", (req, res) => {
 
   let returnTo = req.protocol + "://" + req.hostname;
   let port = req.connection.localPort;
-  // port !== undefined && port !== 80 && port !== 443 - trouble with heroku random ports
+
   // if running locally, add the port to the logout url
   if (port === 3000) {
     returnTo += ":" + port;

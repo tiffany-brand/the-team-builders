@@ -37,15 +37,13 @@
 </nav>
 
 <!-- Banner Content -->
-<section class="container-fluid bg-lt-blue py-5">
+<section class="container-fluid bg-lt-blue py-3">
     <div class="row py-3 py-md-4">
         <div class="col">
             <h1 class="text-white text-center h1style">Matching Game!</h1>
         </div>
     </div>
 </section>
-
-
 
 <!-- Winner Modal -->
 <div class="modal fade" id="winnerModal" tabindex="-1" role="dialog" aria-labelledby="winnerModal-label">
@@ -60,7 +58,7 @@
             <div class="modal-footer">
                 <!-- reload the page when go again is clicked -->
                 <button type="button" onclick="window.location.reload();" class="btn btn-default bg-lt-blue btn-text text-white px-4"
-                    data-dismiss="modal">Go Again!</button>
+                    data-dismiss="modal">Play Again!</button>
             </div>
         </div>
     </div>
@@ -73,7 +71,7 @@
         <div class="col-8 text-center mx-auto">
             <form class="game-form mb-5">
                 <div class="form-group">
-                    <label for="gameTeamSelection">Select a team.</label>
+                    <label for="gameTeamSelection" class="btn-text h5">Select A Team</label>
                     <select class="form-control" id="gameTeamSelection">
                         <!-- How populate with the options from the DB?? -->
                         <option>Team Builders</option>
@@ -81,7 +79,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="gameQuestionSelection">Select a question.</label>
+                    <label for="gameQuestionSelection" class="btn-text h5">Select A Question</label>
                     <select class="form-control" id="gameQuestionSelection">
                         <!-- How populate with the options from the DB?? -->
                         <option>What is your favorite color?</option>
@@ -118,9 +116,6 @@
                     </ul>
                     <span class="moves">0</span> Moves | Time:
                     <span class="timer">0</span> s
-                    <div class="restart">
-                        <i class="fa fa-repeat"></i>
-                    </div>
                 </section>
             </div>
         </div>
@@ -135,19 +130,6 @@
             Team Builder</span>
     </div>
 </footer>
-
-<!-- Javascript -->
-<!-- jQuery, Popper.js, Bootstrap JS, local JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
-<script src="/assets/js/game.js"></script>
 
 <!-- Format based on -->
 <!-- https://github.com/Ul1ra/MemGame/blob/master/index.html -->

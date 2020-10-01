@@ -66,7 +66,7 @@
                     <a href="/user" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Update
                         Profile</a>
                     <a type="button" data-toggle="modal" data-target="#viewTeamModal"
-                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">View Teams</a>
+                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5" id="viewTeams">View Teams</a>
                 </div>
                 <div class="row mb-4 d-flex justify-content-around">
                     <a type="button" data-toggle="modal" data-target="#createTeamModal"
@@ -94,15 +94,15 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="viewTeamModalLabel">Current Teams</h5>
+                <h5 class="modal-title btn-text" id="viewTeamModalLabel">Current Teams</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <ul class="teams_list">
-                    {{#each teams}}
-                    <li>{{this}}</li>
+                    {{#each team.teams}}
+                    <li>{{this.teamName}}</li>
                     {{/each}}
                 </ul>
             </div>
@@ -118,7 +118,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createTeamModalLabel">Create A Team</h5>
+                <h5 class="modal-title btn-text" id="createTeamModalLabel">Create A Team</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -130,7 +130,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary btn-text text-white px-4" data-dismiss="modal">Close</button>
                 <button type="button" class="btn bg-lt-blue text-white btn-text px-4" id="saveNewTeamBtn">Save changes</button>
             </div>
         </div>

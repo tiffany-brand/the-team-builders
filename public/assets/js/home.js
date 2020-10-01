@@ -1,21 +1,21 @@
-const { default: Axios } = require("axios");
-
 $(function () {
-    const saveNewTeamBtn = $("#saveNewTeamBtn");
-    const newTeamName = $("#newTeamName");
-    let newTeamVal;
+  const saveNewTeamBtn = $("#saveNewTeamBtn");
+  const newTeamName = $("#newTeamName");
 
-    const addNewTeamName = () => {
-        axios.post("/api/team", {
-            name: newTeamVal
-        }).then((response) => {
-            console.log(response);
-        })
-    }
+  let newTeamVal;
 
-    saveNewTeamBtn.on("click", function() {
-        newTeamVal = newTeamName.val().trim();
-        addNewTeamName();
-        
-    })
-})
+  const addNewTeamName = () => {
+    axios.post("/api/team", {
+      name: newTeamVal
+    }).then((response) => {
+      console.log(response);
+      window.location.reload();
+    });
+  };
+
+  saveNewTeamBtn.on("click", function () {
+    newTeamVal = newTeamName.val().trim();
+    addNewTeamName();
+    $("#createTeamModal").modal("hide");
+  });
+});

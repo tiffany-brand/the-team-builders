@@ -29,6 +29,7 @@
         ]
     },
     "globals": {
-        "axios": "readonly"
+        "axios": "readonly",
+        "filestack": "readonly"
     }
 }

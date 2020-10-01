@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
+// create a question
 router.post("/api/question", function (req, res) {
   db.Question.create({
     question: req.body.question
@@ -13,6 +14,8 @@ router.post("/api/question", function (req, res) {
       res.status(401).json(err);
     });
 });
+
+// find all questions
 router.get("/api/question", function (req, res) {
   db.Question.findAll({})
     .then(function (dbQuestion) {
@@ -20,6 +23,7 @@ router.get("/api/question", function (req, res) {
     });
 });
 
+// find all questions for one team member
 router.get("/api/userQuestions/:teamMemberId", function (req, res) {
   db.Question.findAll({
     include: {

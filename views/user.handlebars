@@ -78,34 +78,12 @@
                         </div>
                     </div>
                     <div class="form-row">
+                        {{#each user.userQa}}
                         <div class="form-group col-6">
-                            <label for="input" class="col-form-label">{{{user.userQa.0.question}}}</label>
-                            <input data-questionid="1" type="text" class="form-control" id="talent">
+                            <label for="input" class="col-form-label">{{this.question}}</label>
+                            <input name="question-{{this.questionId}}" data-questionid="1" data-answerid="{{this.answerId}}" type="text" class="form-control" id="talent" value="{{this.answer}}">
                         </div>
-                        <div class="form-group col-6">
-                            <label for="input" class="col-form-label">{{{user.userQa.1.question}}}</label>
-                            <input data-questionid="2" type="text" class="form-control" id="peeve">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="input" class="col-form-label">{{{user.userQa.2.question}}}</label>
-                            <input data-questionid="3" type="text" class="form-control" id="food">
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="input" class="col-form-label">{{{user.userQa.3.question}}}</label>
-                            <input data-questionid="4" type="text" class="form-control" id="vehicle">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="input" class="col-form-label">{{{user.userQa.4.question}}}</label>
-                            <input data-questionid="5" type="text" class="form-control" id="tvshow">
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="input" class="col-form-label">{{{user.userQa.5.question}}}</label>
-                            <input data-questionid="6" type="text" class="form-control" id="book">
-                        </div>
+                        {{/each}}
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
@@ -116,7 +94,6 @@
                         </div>
                         <div class="form-group col-6">
                             <label for="pictureUpload">Update Profile Picture</label>
-                            {{!-- <input type="file" class="form-control-file" id="pictureUpload"> --}}
                             <div>
                             <a href="/image-update" class="btn bg-lt-blue text-white btn-text px-4" id="imgPicker">Update Image</a>
                             </div>
@@ -127,7 +104,6 @@
                             data-id="{{user.id}}">Save Changes</button>
                     </div>
                 </form>
-
             </div>
         </div>
         <div class="col"></div>
