@@ -293,6 +293,11 @@ $(function () {
   // On form submission, show game instructions
   $gameForm.on("submit", function (event) {
     event.preventDefault();
+    
+    // clear users array & deck so cards are only one set per submit.
+    // Otherwise, cards will multiply on the board.
+    $deck.empty();
+    users = [];
     // Alert if drop-downs have not been selected
     if ($gameTeamSelection.val() < 0 || $gameQuestionSelection.val() < 0) {
       return noSelectionAlert($gameTeamSelection.val(), $gameQuestionSelection.val());
