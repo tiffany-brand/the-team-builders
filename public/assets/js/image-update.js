@@ -10,18 +10,17 @@ $(function () {
           {
             id: userId,
             picture: file.url
-          }).then(() => {
+          })
+          .then(() => {
             // send user back to user profile page
             window.location.replace("/user");
           }).catch((err) => console.log(err));
-
       }
     };
     // initialize the filestack client with the apiKey and open the picker
     const client = filestack.init(apiKey);
     client.picker(options).open();
   }
-
 
   const $imgBtn = $("#imgPicker");
   const userId = $("#userImg").attr("data-userId");
@@ -31,7 +30,6 @@ $(function () {
     // retrieve apiKey from server to use Filestack
     axios.get("/api/filestack").then((apiKey) => {
       openPicker(apiKey.data);
-    }).catch((err) => console.log(err));;
+    }).catch((err) => console.log(err));
   });
-
 });
