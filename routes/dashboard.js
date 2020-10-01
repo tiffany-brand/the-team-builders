@@ -19,7 +19,7 @@ router.get('/dashboard', secured(), function (req, res, next) {
         let teams = dbTeams.map((team) => {
           return { teamId: team.id, teamName: team.name }
         });
-        console.log(teams);
+
 
         // send user data to dashboard view
         const hbsObject = {
@@ -37,7 +37,7 @@ router.get('/dashboard', secured(), function (req, res, next) {
             teams: teams
           }
         }
-        console.log(hbsObject);
+
         res.render('dashboard', hbsObject);
       });
   }).catch(err => console.log(err));
