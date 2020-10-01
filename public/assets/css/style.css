@@ -173,6 +173,7 @@ a.nav-link:hover,
 .btn-width3 {
     width: 150px;
     letter-spacing: 2px;
+    align-self: center;
 }
 
 .home-header {
@@ -180,11 +181,6 @@ a.nav-link:hover,
     background: -webkit-linear-gradient(#5b247a, #1bcedf);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.img-style {
-    width: 600px;
-    height: 600px;
 }
 
 .no-hover:hover {
