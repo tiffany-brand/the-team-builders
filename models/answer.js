@@ -10,10 +10,10 @@ module.exports = function(sequelize, DataTypes) {
     // },
     answer: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
+      // allowNull: false,
+      // validate: {
+      //   len: [1]
+      // }
     }
   });
   Answer.associate = function(models) {

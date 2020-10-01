@@ -1,5 +1,3 @@
-const { default: Axios } = require("axios");
-
 $(function () {
     const saveNewTeamBtn = $("#saveNewTeamBtn");
     const newTeamName = $("#newTeamName");
@@ -12,6 +10,8 @@ $(function () {
             console.log(response);
         })
     }
+
+    
 
     saveNewTeamBtn.on("click", function() {
         newTeamVal = newTeamName.val().trim();

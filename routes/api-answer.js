@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require("../models");
 
 router.post("/api/answer/all/:userID", async function (req, res) {
+ try {
   for (const question of req.body) {
     await db.Answer.findOrCreate({
       defaults: {
@@ -25,14 +26,16 @@ router.post("/api/answer/all/:userID", async function (req, res) {
             }
           })
         }
-      }).catch(function (err) {
-        res.status(401).json(err);
-      });    
-  }
+      })    
+    }
   console.log(req.body);
   console.log("req.body above");
   console.log(req.params);
   res.json(req.query);
+ } catch (err) {
+   console.log(err);
+  res.status(401).json(err);
+ }
 })
 
 router.post("/api/answer", function (req, res) {

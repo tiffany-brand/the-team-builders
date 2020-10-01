@@ -94,7 +94,9 @@ $(function () {
       data.push({questionId: key, value: value});
       console.log(value);
     }
-    axios.post(`/api/answer/all/${userID}`, data).then(window.location.reload());
+    axios.post(`/api/answer/all/${userID}`, data).then(function() {
+      window.location.reload()
+    });
 
 
     addUserInfo(userID);
