@@ -66,7 +66,7 @@
                     <a href="/user" class="btn bg-lt-blue text-white btn-text btn-width2 pt-5 mb-4 mb-xl-0">Update
                         Profile</a>
                     <a type="button" data-toggle="modal" data-target="#viewTeamModal"
-                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5">View Teams</a>
+                        class="btn bg-lt-blue text-white btn-text btn-width2 pt-5" id="viewTeams">View Teams</a>
                 </div>
                 <div class="row mb-4 d-flex justify-content-around">
                     <a type="button" data-toggle="modal" data-target="#createTeamModal"
@@ -101,8 +101,8 @@
             </div>
             <div class="modal-body">
                 <ul class="teams_list">
-                    {{#each teams}}
-                    <li>{{this}}</li>
+                    {{#each team.teams}}
+                    <li>{{this.teamName}}</li>
                     {{/each}}
                 </ul>
             </div>

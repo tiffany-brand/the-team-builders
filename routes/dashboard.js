@@ -32,6 +32,9 @@ router.get('/dashboard', secured(), function (req, res, next) {
             nickname: teamMember.nick_name,
             teamId: teamMember.TeamId,
             teams: teams
+          },
+          team: {
+            teams: teams
           }
         }
         console.log(hbsObject);

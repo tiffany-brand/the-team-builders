@@ -1,6 +1,8 @@
 $(function () {
     const saveNewTeamBtn = $("#saveNewTeamBtn");
     const newTeamName = $("#newTeamName");
+    const viewTeams = $("#viewTeams");
+
     let newTeamVal;
 
     const addNewTeamName = () => {
@@ -11,7 +13,11 @@ $(function () {
         })
     }
 
-    
+    // const viewAllTeams = () => {
+    //     axios.get("/api/team", {
+            
+    //     })
+    // }
 
     saveNewTeamBtn.on("click", function() {
         newTeamVal = newTeamName.val().trim();
