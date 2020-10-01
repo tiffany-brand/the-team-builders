@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
+// Create a new team member
 router.post("/api/teamMember", function (req, res) {
   db.TeamMember.create({
     nick_name: req.body.nick_name,
@@ -18,6 +19,8 @@ router.post("/api/teamMember", function (req, res) {
       res.status(401).json(err);
     });
 });
+
+// find all team members
 router.get("/api/teamMember", function (req, res) {
   db.TeamMember.findAll({})
     .then(function (dbTeamMember) {
@@ -61,7 +64,7 @@ router.get("/api/teamMember/:teamid", function (req, res) {
     });
 });
 
-// get Filestack api key for image storage
+// get Filestack api key for team member image storage
 router.get("/api/filestack", function (req, res) {
   res.json(process.env.FILESTACK_APIKEY);
 });

@@ -33,7 +33,7 @@ router.get('/user', secured(), function (req, res, next) {
           }
 
         })
-        console.log(userQa)
+
         // send user data to user view
         const hbsObject = {
           user: {
@@ -48,8 +48,7 @@ router.get('/user', secured(), function (req, res, next) {
             userQa: userQa
           }
         }
-        console.log(hbsObject);
-        console.log(hbsObject.user.userQa[0])
+
         res.render('user', hbsObject);
       });
   }).catch(err => console.log(err));

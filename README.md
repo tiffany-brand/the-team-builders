@@ -34,9 +34,9 @@ This application leverages the following technologies:
 | Bootstrap          | Auth0            | Balsamiq       |
 | Express Handlebars | Axios            | dotenv         |
 | Font Awesome       | ExpressJS        | ESLint         |
-| Google Fonts       | Express Sessions | Google G Suite |
-| HTML/CSS           | FileStack        | nodemon        |
-| jQuery             | Heroku           | Postman        |
+| HTML/CSS           | Express Sessions | Google G Suite |
+| jQuery             | FileStack        | nodemon        |
+|                    | Heroku           | Postman        |
 |                    | MySQL            | Trello         |
 |                    | Passport         |                |
 |                    | Sequelize        |                |
@@ -65,10 +65,13 @@ If you have questions, suggestions, or experience any bugs in the application, p
 If you would like to contribute to this project, please fork the repository and then create a pull request for your changes.
 
 ## References
+- Application logo from [BrandCrowd](https://www.brandcrowd.com/)
+- CSS included from [Mimic.css](https://github.com/erictreacy/mimic.css)
+- Font from [FFONTS](https://www.ffonts.net/)
 - [Memory Game Starter Code](https://github.com/Ul1ra/MemGame/blob/master/js/app.js)
 - [Populate Drop-Downs](https://www.c-sharpcorner.com/article/populating-dropown-with-ajax-call/)
-- Game sound effects from [WavSource](https://www.wavsource.com/)
-- Application logo from [BrandCrowd](https://www.brandcrowd.com/)
+- Sound effects from [WavSource](https://www.wavsource.com/)
+- Many thanks to our TA team Bobby Hoffman and Mike Fearnley for their assistance.
 
 ## License
 This repository is licensed under the MIT License.

@@ -2,6 +2,42 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 
+
+// create or update all answers
+router.post("/api/answer/all/:userID", async function (req, res) {
+  try {
+    for (const question of req.body) {
+      await db.Answer.findOrCreate({
+        defaults: {
+          TeamMemberId: req.params.userID,
+          QuestionId: parseInt(question.questionId.replace("question-", "")),
+          answer: question.value
+        },
+        where: {
+          QuestionId: parseInt(question.questionId.replace("question-", "")),
+          TeamMemberId: req.params.userID
+        }
+      })
+        .then(function (response) {
+
+          if (!response.isNewRecord) {
+            return db.Answer.update({ answer: question.value }, {
+              where: {
+                QuestionId: parseInt(question.questionId.replace("question-", "")),
+                TeamMemberId: req.params.userID,
+              }
+            })
+          }
+        })
+    }
+    res.json(req.query);
+  } catch (err) {
+    console.log(err);
+    res.status(401).json(err);
+  }
+})
+
+// create an answer 
 router.post("/api/answer", function (req, res) {
   db.Answer.create({
     TeamMemberId: req.body.TeamMemberId,
@@ -16,6 +52,7 @@ router.post("/api/answer", function (req, res) {
     });
 });
 
+// get all answers
 router.get("/api/answer", function (req, res) {
   db.Answer.findAll({})
     .then(function (dbAnswer) {
@@ -74,5 +111,7 @@ router.put("/api/answer", function (req, res) {
       res.json(dbAnswer);
     });
 });
+
+
 
 module.exports = router;
