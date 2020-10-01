@@ -1,27 +1,19 @@
 $(function () {
-    const saveNewTeamBtn = $("#saveNewTeamBtn");
-    const newTeamName = $("#newTeamName");
-    const viewTeams = $("#viewTeams");
+  const saveNewTeamBtn = $("#saveNewTeamBtn");
+  const newTeamName = $("#newTeamName");
 
-    let newTeamVal;
+  let newTeamVal;
 
-    const addNewTeamName = () => {
-        axios.post("/api/team", {
-            name: newTeamVal
-        }).then((response) => {
-            console.log(response);
-        })
-    }
+  const addNewTeamName = () => {
+    axios.post("/api/team", {
+      name: newTeamVal
+    }).then((response) => {
+      console.log(response);
+    });
+  };
 
-    // const viewAllTeams = () => {
-    //     axios.get("/api/team", {
-            
-    //     })
-    // }
-
-    saveNewTeamBtn.on("click", function() {
-        newTeamVal = newTeamName.val().trim();
-        addNewTeamName();
-        
-    })
-})
+  saveNewTeamBtn.on("click", function () {
+    newTeamVal = newTeamName.val().trim();
+    addNewTeamName();
+  });
+});
