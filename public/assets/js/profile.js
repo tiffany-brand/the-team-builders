@@ -4,13 +4,6 @@ $(function () {
   const $firstName = $("#firstname");
   const $lastName = $("#lastname");
   const $nickName = $("#nickname");
-  // const $talent = $("#talent");
-  // const $peeve = $("#peeve");
-  // const $food = $("#food");
-  // const $vehicle = $("#vehicle");
-  // const $tvShow = $("#tvshow");
-  // const $book = $("#book");
-
   const $teamDD = $("#inputTeam");
   const $updateProfile = $("#updateProfile");
   const $submitForm = $(".submitForm");
@@ -18,7 +11,6 @@ $(function () {
   let userID = $updateProfile.data("id");
 
   $updateProfile.data("id", userID);
-
 
   // Get User Info
   const getUser = (userID) => {
@@ -48,6 +40,7 @@ $(function () {
   // Update user info to database
   const addUserInfo = (userID) => {
     let firstName = $firstName.val().trim();
+
     axios.put("/api/profile", {
       id: userID,
       first_name: firstName,
@@ -60,8 +53,8 @@ $(function () {
       })
       .catch(function (error) {
         console.log(error);
-      })
-  }
+      });
+  };
 
   // Add user info to screen when refreshed
   const repopulateUserInfo = (userID) => {
@@ -71,20 +64,17 @@ $(function () {
         $lastName.val(response.data.last_name);
         $nickName.val(response.data.nick_name);
         $teamDD.val(response.data.TeamId);
-        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
-  }
-
+  };
 
   getTeams();
   repopulateUserInfo(userID);
   getUser(userID);
 
-
-// event listener on submit button
+  // event listener on submit button
   $submitForm.on("submit", function (event) {
     event.preventDefault();
 
@@ -95,18 +85,11 @@ $(function () {
       console.log(value);
     }
     axios.post(`/api/answer/all/${userID}`, data).then(function() {
-      window.location.reload()
+      window.location.reload();
     });
 
-
     addUserInfo(userID);
-
-    
-
   });
-
-
-
 });
 
 

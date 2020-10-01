@@ -21,10 +21,6 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    // team_id: {
-    //   type: DataTypes.INT,
-    //   allowNull: false
-    // },
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
