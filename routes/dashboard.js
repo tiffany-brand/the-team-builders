@@ -39,7 +39,7 @@ router.get('/dashboard', secured(), function (req, res, next) {
         }
 
         res.render('dashboard', hbsObject);
-      });
+      }).catch(err => console.log(err));
   }).catch(err => console.log(err));
 });
 
