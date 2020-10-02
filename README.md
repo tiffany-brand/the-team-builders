@@ -10,7 +10,8 @@
 * [Contributors](#contributors)
 * [Questions & Collaboration](#questions-&-collaboration)
 * [References](#references)
-* [License](#License)
+* [License](#license)
+* [Screenshots](#screenshots)
 
 ## Description
 Due to the unprecedented shift to a remote workforce, it can be difficult for teams to create and maintain a cohesive bond. New members joining a team may find it harder to connect with peers. Managers may not have the right tools to help bring their team together. Enter: Team Builder! Our application aims to help build teams, foster creativity, and strengthen culture.
@@ -75,4 +76,16 @@ If you would like to contribute to this project, please fork the repository and 
 
 ## License
 This repository is licensed under the MIT License.
+
+## Screenshots
+![Screen Shot 2020-10-01 at 11 05 43 PM](https://user-images.githubusercontent.com/65197724/94885347-f54e5600-043d-11eb-8a82-0f13b14dc9f0.png)
+
+![Screen Shot 2020-10-01 at 11 06 16 PM](https://user-images.githubusercontent.com/65197724/94885375-05fecc00-043e-11eb-8372-0bbf75c8acc4.png)
+
+![Screen Shot 2020-10-01 at 11 08 16 PM](https://user-images.githubusercontent.com/65197724/94885488-4d855800-043e-11eb-8877-db34b58e51b1.png)
+
+![Screen Shot 2020-10-01 at 11 36 23 PM](https://user-images.githubusercontent.com/65197724/94885712-ed42e600-043e-11eb-9e89-8e178bd911bd.png)
+
+![Screen Shot 2020-10-01 at 11 33 42 PM](https://user-images.githubusercontent.com/65197724/94885582-90dfc680-043e-11eb-9e0b-0f218ca67a6f.png)
+
 
