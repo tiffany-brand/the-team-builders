@@ -66,36 +66,40 @@
                     <div class="form-row">
                         <div class="form-group col-4">
                             <label for="input" class="col-form-label">First Name </label>
-                            <input type="text" class="form-control" data-id={{user.id}} id="firstname">
+                            <input type="text" class="form-control" data-id={{user.id}} id="firstname"
+                                value="{{user.firstName}}">
                         </div>
                         <div class="form-group col-4">
                             <label for="input" class="col-form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastname">
+                            <input type="text" class="form-control" id="lastname" value="{{user.lastName}}">
                         </div>
                         <div class="form-group col-4">
                             <label for="input" class="col-form-label">Nickname</label>
-                            <input type="text" class="form-control" id="nickname">
+                            <input type="text" class="form-control" id="nickname" value="{{user.nickname}}">
                         </div>
                     </div>
                     <div class="form-row">
                         {{#each user.userQa}}
                         <div class="form-group col-6">
                             <label for="input" class="col-form-label">{{this.question}}</label>
-                            <input name="question-{{this.questionId}}" data-questionid="1" data-answerid="{{this.answerId}}" type="text" class="form-control" id="talent" value="{{this.answer}}">
+                            <input name="question-{{this.questionId}}" data-questionid="1"
+                                data-answerid="{{this.answerId}}" type="text" class="form-control" id="talent"
+                                value="{{this.answer}}">
                         </div>
                         {{/each}}
                     </div>
                     <div class="form-row">
                         <div class="form-group col-6">
                             <label for="inputTeam">Your Team</label>
-                            <select id="inputTeam" class="form-control">
+                            <select id="inputTeam" data-teamid="{{user.teamId}}" class="form-control">
                                 {{!-- Dropdown options created via JS --}}
                             </select>
                         </div>
                         <div class="form-group col-6">
                             <label for="pictureUpload">Update Profile Picture</label>
                             <div>
-                            <a href="/image-update" class="btn bg-lt-blue text-white btn-text px-4" id="imgPicker">Update Image</a>
+                                <a href="/image-update" class="btn bg-lt-blue text-white btn-text px-4"
+                                    id="imgPicker">Update Image</a>
                             </div>
                         </div>
                     </div>
