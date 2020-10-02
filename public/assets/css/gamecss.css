@@ -14,7 +14,7 @@
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex !important;
     flex-wrap: wrap !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     align-items: center !important;
     margin: 0 0 3em;
 }
@@ -34,6 +34,7 @@
     justify-content: center !important;
     text-align: center;
     align-items: center !important;
+    margin-right: 10px;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
@@ -94,4 +95,18 @@
 
 .game-form {
     margin-bottom: 75px;
+}
+
+@media screen and (max-width: 767px) {
+    .deck {
+        width: 100%;
+        min-height: unset;
+        align-content: flex-start;
+    }
+
+    .deck .gamecard {
+        height: 75px;
+        width: 75px;
+        margin-bottom: 10px;
+    }
 }
